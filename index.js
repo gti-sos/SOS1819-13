@@ -57,12 +57,12 @@ app.get("/api/v1/gasIncreases/loadInitialData",(req,res) => {
     gasnormalprice: "1.270"
 }];
 
- if(gasIncreases.length<=0){ // si está vacío al hacer DELETE, entonces devolvemos los ingresos iniciales
+ if(gasIncreases.length<=0){ 
         var i;
         for(i=0;i<=newGasIncreases.length;i++){
             gasIncreases.push(newGasIncreases[i]);
         }
-        res.send(gasIncreases); //el servidor nos envía todos los ingresos
+        res.send(gasIncreases); 
    }
 });
 
