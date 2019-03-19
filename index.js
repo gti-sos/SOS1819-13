@@ -42,7 +42,7 @@ var gasIncreases = [{
 
     // API REST IVAN
 // LOAD INITIAL DATA de GET /gasIncreases
-app.get("api/v1/gasIncreases/loadInitialData",(req,res) => {
+app.get("/api/v1/gasIncreases/loadInitialData",(req,res) => {
     res.send(gasIncreases);
 });
 
