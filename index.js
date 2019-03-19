@@ -44,10 +44,26 @@ var gasIncreases = [{
 
     // API REST IVAN
 // LOAD INITIAL DATA de GET /gasIncreases
-app.get("/api/v1/gasIncreases/loadInitialData",(req,res) => {
-    res.send(gasIncreases);
-});
+app.get("/api/v1/gasIncreases/loadInitialData", (req,res)=>{
+var newGasIncreases = [{
+    year: "2017",
+    province: "sevilla",
+    gasoleoAprice: "1.121",
+    gasoleoAplusprice: "1.321",
+    gasnormalprice: "1.223"
+}, {
+    year: "2017",
+    province: "cadiz",
+    gasoleoAprice: "1.218",
+    gasoleoAplusprice: "1.420",
+    gasnormalprice: "1.270"
+}];
 
+    newGasIncreases.forEach( (d)=>{
+        gasIncreases.push(d)
+    })
+    res.sendStatus(200);
+});
 
 // GET /gasIncreases
 app.get("/api/v1/gasIncreases", (req,res)=>{
@@ -62,6 +78,9 @@ app.post("/api/v1/gasIncreases", (req,res)=>{
     res.sendStatus(201);
 });
 
+app.post("/api/v1/gasIncreases", (req,res)=>{
+    res.sendStatus(405);
+});
 
 // DELETE /gasIncreases
 app.delete("/api/v1/gasIncreases", (req,res)=>{
@@ -115,6 +134,10 @@ app.put("/api/v1/gasIncreases/:year", (req,res)=>{
 
 });
 
+app.put("/api/v1/gasIncreases/:year", (req,res)=>{
+    res.sendStatus(405);
+});
+
 // DELETE /gasIncreases/2017
 app.delete("/api/v1/gasIncreases/:year", (req,res)=>{
 
@@ -135,7 +158,6 @@ app.delete("/api/v1/gasIncreases/:year", (req,res)=>{
     }
 
 });
-
 
 
 app.listen(port, () => {
