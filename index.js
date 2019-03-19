@@ -41,6 +41,38 @@ var gasIncreases = [{
     gasnormalprice: "1.257"
 }];
 
+// API DIEGO
+var gasStations = [{		
+    year: "2017",
+    province: "sevilla",
+    gasoleoAstations: "425",
+    gasoleoAplusstations: "255",
+    gasoleo98stations: "186"
+}, {		
+    year: "2017",		
+    province: "cadiz",
+    gasoleoAstations: "243",
+    gasoleoAplusstations: "165",
+    gasoleo98stations: "141"
+}, {		
+    year: "2018",		
+    province: "sevilla",
+    gasoleoAstations: "437",
+    gasoleoAplusstations: "252",
+    gasoleo98stations: "185"
+}, {		
+    year: "2018",		
+    province: "cadiz",
+    gasoleoAstations: "258",
+    gasoleoAplusstations: "167",
+    gasoleo98stations: "142"
+}, {		
+    year: "2018",
+    province: "madrid",		
+    gasoleoAstations: "710",
+    gasoleoAplusstations: "586",
+    gasoleo98stations: "510"
+}];
 
     // API REST IVAN
 // LOAD INITIAL DATA de GET /gasIncreases
@@ -177,6 +209,145 @@ app.delete("/api/v1/gasIncreases/:year", (req,res)=>{
     }
 
 });
+
+
+
+// API REST DIEGO
+// LOAD INITIAL DATA de GET /gasStations
+app.get("/api/v1/gasStations/loadInitialData", (req,res)=>{
+var newGasStations = [{		
+    year: "2017",
+    province: "sevilla",
+    gasoleoAstations: "425",
+    gasoleoAplusstations: "255",
+    gasoleo98stations: "186"
+}, {		
+    year: "2017",		
+    province: "cadiz",
+    gasoleoAstations: "243",
+    gasoleoAplusstations: "165",
+    gasoleo98stations: "141"
+}, {		
+    year: "2018",		
+    province: "sevilla",
+    gasoleoAstations: "437",
+    gasoleoAplusstations: "252",
+    gasoleo98stations: "185"
+}, {		
+    year: "2018",		
+    province: "cadiz",
+    gasoleoAstations: "258",
+    gasoleoAplusstations: "167",
+    gasoleo98stations: "142"
+}, {		
+    year: "2018",
+    province: "madrid",		
+    gasoleoAstations: "710",
+    gasoleoAplusstations: "586",
+    gasoleo98stations: "510"
+}];
+
+    newGasStations.forEach( (d)=>{
+        gasStations.push(d)
+    })
+    res.sendStatus(200);
+});
+
+// GET /gasStations
+app.get("/api/v1/gasStations", (req,res)=>{
+   res.send(gasStations);
+});
+
+// POST /gasStations
+app.post("/api/v1/gasStations", (req,res)=>{
+    
+    var newData = req.body;
+    gasStations.push(newData);
+    res.sendStatus(201);
+});
+
+app.post("/api/v1/gasStations/:year", (req,res)=>{
+    res.sendStatus(405);
+});
+
+// DELETE /gasStations
+app.delete("/api/v1/gasStations", (req,res)=>{
+    
+    gasStations = [];
+    
+    res.sendStatus(200);
+});
+
+// GET /gasStations/2017
+app.get("/api/v1/gasStations/:year", (req,res)=>{
+
+    var year = req.params.year;
+
+    var filteredgasStations = gasStations.filter((d) =>{
+       return d.year == year; 
+    })
+    
+    if (filteredgasStations.length >= 1){
+        res.send(filteredgasStations);
+    }else{
+        res.sendStatus(404);
+    }
+
+});
+
+
+// PUT /gasStations/2017
+app.put("/api/v1/gasStations/:year/:province", (req,res)=>{
+
+    var year = req.params.year;
+    var province = req.params.province;
+    var updatedData = req.body;
+    var found = false;
+
+    var updatedgasStations = gasStations.map((d) =>{
+        if(d.year==year && d.province==province){
+            found = true;
+            return updatedData;
+        }else{
+            return d; 
+        }
+        
+    });
+    
+    if (found==false){
+        res.sendStatus(404);
+    } else {
+        gasStations = updatedgasStations;
+        res.sendStatus(200);
+    }
+
+});
+
+app.put("/api/v1/gasStations", (req,res)=>{
+    res.sendStatus(405);
+});
+
+// DELETE /gasStations/2017
+app.delete("/api/v1/gasStations/:year", (req,res)=>{
+
+    var year = req.params.year;
+    var found = false;
+
+    var updatedgasStations = gasStations.filter((d) =>{
+        if(d.year==year)
+            found = true;
+        return d.year!=year;
+    });
+    
+    if (found==false){
+        res.sendStatus(404);
+    } else {
+        gasStations = updatedgasStations;
+        res.sendStatus(200);
+    }
+
+});
+
 
 
 app.listen(port, () => {
