@@ -6,6 +6,8 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
+app.use("/", express.static(__dirname + "/public"))
+
 // API IVÁN
 var gasIncreases = [{
     year: "2017",
