@@ -127,7 +127,7 @@ app.get("/api/v1/gasIncreases/:year", (req,res)=>{
 
 
 // PUT /gasIncreases/2017
-app.put("/api/v1/gasIncreases/:year", (req,res)=>{
+app.put("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
     var year = req.params.year;
     var province = req.params.province;
