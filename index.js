@@ -57,6 +57,24 @@ var newGasIncreases = [{
     gasoleoAprice: "1.218",
     gasoleoAplusprice: "1.420",
     gasnormalprice: "1.270"
+}, {
+    year: "2018",
+    province: "sevilla",
+    gasoleoAprice: "1.221",
+    gasoleoAplusprice: "1.390",
+    gasnormalprice: "1.275"
+}, {
+    year: "2018",
+    province: "cadiz",
+    gasoleoAprice: "1.220",
+    gasoleoAplusprice: "1.410",
+    gasnormalprice: "1.240"
+}, {
+    year: "2018",
+    province: "madrid",
+    gasoleoAprice: "1.201",
+    gasoleoAplusprice: "1.401",
+    gasnormalprice: "1.257"
 }];
 
     newGasIncreases.forEach( (d)=>{
