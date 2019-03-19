@@ -42,28 +42,8 @@ var gasIncreases = [{
 
     // API REST IVAN
 // LOAD INITIAL DATA de GET /gasIncreases
-app.get("/api/v1/gasIncreases/loadInitialData",(req,res) => {
-    var newGasIncreases = [{
-    year: "2017",
-    province: "sevilla",
-    gasoleoAprice: "1.121",
-    gasoleoAplusprice: "1.321",
-    gasnormalprice: "1.223"
-}, {
-    year: "2017",
-    province: "cadiz",
-    gasoleoAprice: "1.218",
-    gasoleoAplusprice: "1.420",
-    gasnormalprice: "1.270"
-}];
-
- if(gasIncreases.length<=0){ 
-        var i;
-        for(i=0;i<=newGasIncreases.length;i++){
-            gasIncreases.push(newGasIncreases[i]);
-        }
-        res.send(gasIncreases); 
-   }
+app.get("/gasIncreases/loadInitialData",(req,res) => {
+    res.send(gasIncreases);
 });
 
 
