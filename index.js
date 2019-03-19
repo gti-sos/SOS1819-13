@@ -96,7 +96,7 @@ app.post("/api/v1/gasIncreases", (req,res)=>{
     res.sendStatus(201);
 });
 
-app.post("/api/v1/gasIncreases", (req,res)=>{
+app.post("/api/v1/gasIncreases/:year", (req,res)=>{
     res.sendStatus(405);
 });
 
@@ -130,11 +130,12 @@ app.get("/api/v1/gasIncreases/:year", (req,res)=>{
 app.put("/api/v1/gasIncreases/:year", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
     var updatedData = req.body;
     var found = false;
 
     var updatedgasIncreases = gasIncreases.map((d) =>{
-        if(d.year==year){
+        if(d.year==year && d.province==province){
             found = true;
             return updatedData;
         }else{
@@ -152,7 +153,7 @@ app.put("/api/v1/gasIncreases/:year", (req,res)=>{
 
 });
 
-app.put("/api/v1/gasIncreases/:year", (req,res)=>{
+app.put("/api/v1/gasIncreases", (req,res)=>{
     res.sendStatus(405);
 });
 
