@@ -232,7 +232,7 @@ app.put("/api/v1/gasIncreases", (req, res) => {
     res.sendStatus(405);
 });
 
-// DELETE /gasIncreases/2017
+// DELETE /gasIncreases/2017/sevila
 
 app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
@@ -241,13 +241,10 @@ app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
     var found = false;
 
     var updatedgasIncreases = gasIncreases.filter((d) =>{
-        if(d.year!=year) {
-            if (d.province!=province ){
-                return d
-            } 
-        } else if (d.year==year && d.province==province)  {
-            found = true
-        }
+        if (d.year==year && d.province==province) 
+            found = true;
+        else 
+            return d;
     });
 
     if (found == false) {
@@ -383,15 +380,18 @@ app.put("/api/v1/gasStations", (req, res) => {
 
 // DELETE /gasStations/2017/sevilla
 app.delete("/api/v1/gasStations/:province", (req,res)=>{
-
+    var year = req.params.year;
     var found = false;
     var province = req.params.province;
 
-    var updatedgasStations = gasStations.filter((d) => {
-        if (d.province == province)
+
+    var updatedgasStations = gasStations.filter((d) =>{
+        if (d.year==year && d.province==province) 
             found = true;
-            return d.province != province;
-    });
+        else 
+            return d;
+    })
+    
 
     if (found == false) {
         res.sendStatus(404);
