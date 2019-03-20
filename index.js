@@ -141,12 +141,13 @@ app.delete("/api/v1/gasIncreases", (req,res)=>{
 });
 
 // GET /gasIncreases/2017
-app.get("/api/v1/gasIncreases/:year", (req,res)=>{
+app.get("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
 
     var filteredgasIncreases = gasIncreases.filter((d) =>{
-       return d.year == year; 
+       return d.year == year && d.province==province; 
     })
     
     if (filteredgasIncreases.length >= 1){
