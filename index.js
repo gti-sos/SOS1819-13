@@ -534,5 +534,3 @@ app.delete("/api/v1/provinceEmployment/:year", (req,res)=>{
     }
 
 });
-
->>>>>>>>> local version
