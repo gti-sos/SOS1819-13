@@ -1,19 +1,12 @@
 var express = require("express");
-
 var bodyParser = require("body-parser");
 
 var app = express();
-
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-app.listen(port, () => {
-    console.log("Server ready on port " +port);
-});
-
-app.use("/", express.static(__dirname + "/public"));
-
+app.use("/", express.static(__dirname + "/public"))
 
 // API IVÁN
 var gasIncreases = [{
@@ -81,45 +74,6 @@ var gasStations = [{
     gasoleo98stations: "510"
 }];
 
-// API JUANMA
-var provinceEmployment = [{
-    province: "cadiz",
-    year: "2018",
-    industryEmployment: 44250,
-    buildingEmployment: 35575,
-    servicesEmployment: 373400
-}, {
-    province: "madrid",
-    year: "2018",
-    industryEmployment: 267500,
-    buildingEmployment: 195175,
-    servicesEmployment: 2709675
-}, {
-    province: "sevilla",
-    year: "2018",
-    industryEmployment: 79950,
-    buildingEmployment: 49325,
-    servicesEmployment: 639775
-}, {
-    province: "cadiz",
-    year: "2017",
-    industryEmployment: 41975,
-    buildingEmployment: 28075,
-    servicesEmployment: 379400
-}, {   
-    province: "madrid",
-    year: "2017",
-    industryEmployment: 268725,
-    buildingEmployment: 166250,
-    servicesEmployment: 2660950
-}, {
-    province: "sevilla",
-    year: "2017",
-    industryEmployment: 81450,
-    buildingEmployment: 43525,
-    servicesEmployment: 627850
-}];
-
     // API REST IVAN
 // LOAD INITIAL DATA de GET /gasIncreases
 app.get("/api/v1/gasIncreases/loadInitialData", (req,res)=>{
@@ -174,7 +128,7 @@ app.post("/api/v1/gasIncreases", (req,res)=>{
     res.sendStatus(201);
 });
 
-app.post("/api/v1/gasIncreases/:year", (req,res)=>{
+app.post("/api/v1/gasIncreases/:year/:province", (req,res)=>{
     res.sendStatus(405);
 });
 
@@ -237,15 +191,16 @@ app.put("/api/v1/gasIncreases", (req,res)=>{
 });
 
 // DELETE /gasIncreases/2017
-app.delete("/api/v1/gasIncreases/:year", (req,res)=>{
+app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
     var found = false;
 
     var updatedgasIncreases = gasIncreases.filter((d) =>{
-        if(d.year==year)
+        if(d.year==year && d.province==province)
             found = true;
-        return d.year!=year;
+        return d.year!=year && d.province==province;
     });
     
     if (found==false){
@@ -295,8 +250,8 @@ var newGasStations = [{
 }];
 
     newGasStations.forEach( (d)=>{
-        gasStations.push(d);
-});
+        gasStations.push(d)
+    })
     res.sendStatus(200);
 });
 
@@ -332,7 +287,6 @@ app.get("/api/v1/gasStations/:year/:province", (req,res)=>{
     var province = req.params.province;
 
     var filteredgasStations = gasStations.filter((d) =>{
-       
        return d.year == year && d.province==province; 
     })
     
@@ -382,15 +336,9 @@ app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
     var year = req.params.year;
     var province = req.params.province;
     var found = false;
-    
-    var province = req.params.province;
 
     var updatedgasStations = gasStations.filter((d) =>{
-<<<<<<< HEAD
         if(d.year==year && d.province==province)
-=======
-        if(d.year==year && d.province==province )
->>>>>>> 1082b929401a65c03314f26093d4553d4dcdec17
             found = true;
         return d.year!=year;
     });
@@ -405,146 +353,7 @@ app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
 });
 
 
-   // API REST JUANMA
-// LOAD INITIAL DATA de GET /provinceEmployment
 
-app.get("/api/v1/provinceEmployment/loadInitialData", (req,res)=>{
-var newProvinceEmployment = [{
-    province: "cadiz",
-    year: "2018",
-    industryEmployment: 44250,
-    buildingEmployment: 35575,
-    servicesEmployment: 373400
-}, {
-    province: "madrid",
-    year: "2018",
-    industryEmployment: 267500,
-    buildingEmployment: 195175,
-    servicesEmployment: 2709675
-}, {
-    province: "sevilla",
-    year: "2018",
-    industryEmployment: 79950,
-    buildingEmployment: 49325,
-    servicesEmployment: 639775
-}, {
-    province: "cadiz",
-    year: "2017",
-    industryEmployment: 41975,
-    buildingEmployment: 28075,
-    servicesEmployment: 379400
-}, {   
-    province: "madrid",
-    year: "2017",
-    industryEmployment: 268725,
-    buildingEmployment: 166250,
-    servicesEmployment: 2660950
-}, {
-    province: "sevilla",
-    year: "2017",
-    industryEmployment: 81450,
-    buildingEmployment: 43525,
-    servicesEmployment: 627850  
-}];
-
-    newProvinceEmployment.forEach( (d)=>{
-        provinceEmployment.push(d);
-    });
-    res.sendStatus(200);
+app.listen(port, () => {
+    console.log("Server ready on port " +port)
 });
-
-// GET /provinceEmployment
-app.get("/api/v1/provinceEmployment", (req,res)=>{
-   res.send(provinceEmployment);
-});
-
-// POST /provinceEmployment
-app.post("/api/v1/provinceEmployment", (req,res)=>{
-    
-    var newData = req.body;
-    provinceEmployment.push(newData);
-    res.sendStatus(201);
-});
-
-app.post("/api/v1/provinceEmployment/:year", (req,res)=>{
-    res.sendStatus(405);
-});
-
-// DELETE /provinceEmployment
-app.delete("/api/v1/provinceEmployment", (req,res)=>{
-    
-    provinceEmployment = [];
-    
-    res.sendStatus(200);
-});
-
-// GET /provinceEmployment/2017
-app.get("/api/v1/provinceEmployment/:year", (req,res)=>{
-
-    var year = req.params.year;
-
-    var filteredprovinceEmployment = provinceEmployment.filter((d) =>{
-       return d.year == year; 
-});
-    
-    if (filteredprovinceEmployment.length >= 1){
-        res.send(filteredprovinceEmployment);
-    }else{
-        res.sendStatus(404);
-    }
-
-});
-
-
-// PUT /provinceEmployment/2017/province
-app.put("/api/v1/provinceEmployment/:year/:province", (req,res)=>{
-
-    var year = req.params.year;
-    var province = req.params.province;
-    var updatedData = req.body;
-    var found = false;
-
-    var updatedprovinceEmployment = provinceEmployment.map((d) =>{
-        if(d.year==year && d.province==province){
-            found = true;
-            return updatedData;
-        }else{
-            return d; 
-        }
-        
-    });
-    
-    if (found==false){
-        res.sendStatus(404);
-    } else {
-        provinceEmployment = updatedprovinceEmployment;
-        res.sendStatus(200);
-    }
-
-});
-
-app.put("/api/v1/provinceEmployment", (req,res)=>{
-    res.sendStatus(405);
-});
-
-// DELETE /provinceEmployment/2017
-app.delete("/api/v1/provinceEmployment/:year", (req,res)=>{
-
-    var year = req.params.year;
-    var found = false;
-
-    var updatedprovinceEmployment = provinceEmployment.filter((d) =>{
-        if(d.year==year)
-            found = true;
-        return d.year!=year;
-    });
-    
-    if (found==false){
-        res.sendStatus(404);
-    } else {
-        provinceEmployment = updatedprovinceEmployment;
-        res.sendStatus(200);
-    }
-
-});
-
