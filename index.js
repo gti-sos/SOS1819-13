@@ -330,13 +330,14 @@ app.put("/api/v1/gasStations", (req,res)=>{
 });
 
 // DELETE /gasStations/2017
-app.delete("/api/v1/gasStations/:year", (req,res)=>{
+app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
     var found = false;
 
     var updatedgasStations = gasStations.filter((d) =>{
-        if(d.year==year)
+        if(d.year==year && d.province==province)
             found = true;
         return d.year!=year;
     });
