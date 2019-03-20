@@ -200,7 +200,7 @@ app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
     var updatedgasIncreases = gasIncreases.filter((d) =>{
         if(d.year==year && d.province==province)
             found = true;
-        return d.year!=year && d.province==province;
+        return d.year!=year && d.province!=province;
     });
     
     if (found==false){
