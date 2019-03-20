@@ -333,11 +333,13 @@ app.delete("/api/v1/gasStations/:year", (req,res)=>{
 
     var year = req.params.year;
     var found = false;
+    
+    var province = req.params.province;
 
     var updatedgasStations = gasStations.filter((d) =>{
-        if(d.year==year)
+        if(d.year==year && d.province==province )
             found = true;
-        return d.year!=year;
+        return d.year!=year && d.province!=province;
     });
     
     if (found==false){
