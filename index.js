@@ -125,6 +125,7 @@ var provinceEmployment = [{
 
 // API REST IVAN
 // LOAD INITIAL DATA de GET /gasIncreases
+<<<<<<< HEAD
 app.get("/api/v1/gasIncreases/loadInitialData", (req, res) => {
     var newGasIncreases = [{
         year: "2017",
@@ -161,6 +162,44 @@ app.get("/api/v1/gasIncreases/loadInitialData", (req, res) => {
     newGasIncreases.forEach((d) => {
         gasIncreases.push(d)
     })
+=======
+app.get("/api/v1/gasIncreases/loadInitialData", (req,res)=>{
+var newGasIncreases = [{
+    year: "2017",
+    province: "sevilla",
+    gasoleoAprice: "1.121",
+    gasoleoAplusprice: "1.321",
+    gasnormalprice: "1.223"
+}, {
+    year: "2017",
+    province: "cadiz",
+    gasoleoAprice: "1.218",
+    gasoleoAplusprice: "1.420",
+    gasnormalprice: "1.270"
+}, {
+    year: "2018",
+    province: "sevilla",
+    gasoleoAprice: "1.221",
+    gasoleoAplusprice: "1.390",
+    gasnormalprice: "1.275"
+}, {
+    year: "2018",
+    province: "cadiz",
+    gasoleoAprice: "1.220",
+    gasoleoAplusprice: "1.410",
+    gasnormalprice: "1.240"
+}, {
+    year: "2018",
+    province: "madrid",
+    gasoleoAprice: "1.201",
+    gasoleoAplusprice: "1.401",
+    gasnormalprice: "1.257"
+}];
+
+    newGasIncreases.forEach( (d)=>{
+        gasIncreases.push(d);
+    });
+>>>>>>> 948be678c383c98abf6f4dfcd26cc9bd31b95243
     res.sendStatus(200);
 });
 
@@ -199,11 +238,19 @@ app.get("/api/v1/gasIncreases/:year/:province", (req, res) => {
     var year = req.params.year;
     var province = req.params.province;
 
+<<<<<<< HEAD
     var filteredgasIncreases = gasIncreases.filter((d) => {
         return d.year == year && d.province == province;
     })
 
     if (filteredgasIncreases.length >= 1) {
+=======
+    var filteredgasIncreases = gasIncreases.filter((d) =>{
+       return d.year == year && d.province==province; 
+    });
+    
+    if (filteredgasIncreases.length >= 1){
+>>>>>>> 948be678c383c98abf6f4dfcd26cc9bd31b95243
         res.send(filteredgasIncreases);
     } else {
         res.sendStatus(404);
@@ -352,9 +399,14 @@ var newGasStations = [{
 }];
 
     newGasStations.forEach( (d)=>{
+<<<<<<< HEAD
         gasStations.push(d)
     })
 >>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
+=======
+        gasStations.push(d);
+    });
+>>>>>>> 948be678c383c98abf6f4dfcd26cc9bd31b95243
     res.sendStatus(200);
 });
 
@@ -402,7 +454,7 @@ app.get("/api/v1/gasStations/:year/:province", (req, res) => {
 =======
     var filteredgasStations = gasStations.filter((d) =>{
        return d.year == year && d.province==province; 
-    })
+    });
     
     if (filteredgasStations.length >= 1){
 >>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
