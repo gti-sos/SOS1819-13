@@ -332,13 +332,9 @@ app.get("/api/v1/gasStations/:year/:province", (req,res)=>{
     var province = req.params.province;
 
     var filteredgasStations = gasStations.filter((d) =>{
-<<<<<<< HEAD
-       return d.year == year; 
-    });
-=======
+       
        return d.year == year && d.province==province; 
     })
->>>>>>> ce8c3ee5aa874fa564ac66c806f8e83a50663c8d
     
     if (filteredgasStations.length >= 1){
         res.send(filteredgasStations);
