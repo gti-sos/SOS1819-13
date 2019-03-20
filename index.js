@@ -150,8 +150,8 @@ var newGasIncreases = [{
 }];
 
     newGasIncreases.forEach( (d)=>{
-        gasIncreases.push(d)
-    })
+        gasIncreases.push(d);
+    });
     res.sendStatus(200);
 });
 
@@ -188,7 +188,7 @@ app.get("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
     var filteredgasIncreases = gasIncreases.filter((d) =>{
        return d.year == year && d.province==province; 
-    })
+    });
     
     if (filteredgasIncreases.length >= 1){
         res.send(filteredgasIncreases);
@@ -290,8 +290,8 @@ var newGasStations = [{
 }];
 
     newGasStations.forEach( (d)=>{
-        gasStations.push(d)
-    })
+        gasStations.push(d);
+    });
     res.sendStatus(200);
 });
 
@@ -328,7 +328,7 @@ app.get("/api/v1/gasStations/:year/:province", (req,res)=>{
 
     var filteredgasStations = gasStations.filter((d) =>{
        return d.year == year && d.province==province; 
-    })
+    });
     
     if (filteredgasStations.length >= 1){
         res.send(filteredgasStations);
