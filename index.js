@@ -331,14 +331,13 @@ app.put("/api/v1/gasStations", (req,res)=>{
 });
 
 // DELETE /gasStations/2017/sevilla
-app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
+app.delete("/api/v1/gasStations/:province", (req,res)=>{
 
-    var year = req.params.year;
     var province = req.params.province;
     var found = false;
     
     var updatedgasStations = gasStations.filter((d) =>{
-        if(d.year==year && d.province==province)
+        if(d.province==province)
             found = true;
             return d.province!=province ;
     });
