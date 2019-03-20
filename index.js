@@ -534,3 +534,8 @@ app.delete("/api/v1/provinceEmployment/:year", (req,res)=>{
     }
 
 });
+
+
+app.listen(port, () => {
+    console.log("Server ready on port " +port)
+});
