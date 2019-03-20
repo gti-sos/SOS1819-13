@@ -338,9 +338,15 @@ app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
     var found = false;
 
     var updatedgasStations = gasStations.filter((d) =>{
+<<<<<<< HEAD
         if(d.year==year && d.province==province)
+=======
+
+        if(d.year==year && d.province==province)
+
+>>>>>>> 828c5316f1791699c749d83392326570f5bf5d80
             found = true;
-        return d.year!=year;
+        return d.year!=year && d.province!=province ;
     });
     
     if (found==false){
