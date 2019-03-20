@@ -234,17 +234,18 @@ app.put("/api/v1/gasIncreases", (req, res) => {
 
 // DELETE /gasIncreases/2017
 
-app.delete("/api/v1/gasIncreases/:province", (req,res)=>{
+app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
-
+    var year = req.params.year;
     var province = req.params.province;
     var found = false;
 
-
-    var updatedgasIncreases = gasIncreases.filter((d) =>{
-        if(d.province==province)
-            found = true;
-        return d.province!=province;
+    var updatedgasIncreases = gasIncreases.map((d) =>{
+        if(d.year!=year && d.province!=province ) {
+            return d
+        } else {
+            found = true
+        }
     });
 
     if (found == false) {
@@ -385,7 +386,7 @@ app.delete("/api/v1/gasStations/:province", (req,res)=>{
     var province = req.params.province;
 
     var updatedgasStations = gasStations.filter((d) => {
-        if (d.year == year && d.province == province)
+        if (d.province == province)
             found = true;
             return d.province != province;
     });
