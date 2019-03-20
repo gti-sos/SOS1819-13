@@ -267,7 +267,7 @@ app.post("/api/v1/gasStations", (req,res)=>{
     res.sendStatus(201);
 });
 
-app.post("/api/v1/gasStations/:year", (req,res)=>{
+app.post("/api/v1/gasStations/:year/:province", (req,res)=>{
     res.sendStatus(405);
 });
 
@@ -330,7 +330,7 @@ app.put("/api/v1/gasStations", (req,res)=>{
 });
 
 // DELETE /gasStations/2017
-app.delete("/api/v1/gasStations/:year", (req,res)=>{
+app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
 
     var year = req.params.year;
     var found = false;
@@ -340,7 +340,7 @@ app.delete("/api/v1/gasStations/:year", (req,res)=>{
     var updatedgasStations = gasStations.filter((d) =>{
         if(d.year==year && d.province==province )
             found = true;
-        return d.year!=year && d.province!=province;
+        return d.year!=year;
     });
     
     if (found==false){
