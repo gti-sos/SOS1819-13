@@ -330,19 +330,17 @@ app.put("/api/v1/gasStations", (req,res)=>{
     res.sendStatus(405);
 });
 
-// DELETE /gasStations/2017
+// DELETE /gasStations/2017/sevilla
 app.delete("/api/v1/gasStations/:year/:province", (req,res)=>{
 
     var year = req.params.year;
     var province = req.params.province;
     var found = false;
-
+    
     var updatedgasStations = gasStations.filter((d) =>{
         if(d.year==year && d.province==province)
-
-        if(d.year==year && d.province==province)
             found = true;
-        return d.year!=year && d.province!=province ;
+            return d.province!=province ;
     });
     
     if (found==false){
