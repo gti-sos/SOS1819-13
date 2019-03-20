@@ -245,7 +245,7 @@ app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
             if (d.province!=province ){
                 return d
             } 
-        } else if (d.year!=year && d.province!=province)  {
+        } else if (d.year==year && d.province==province)  {
             found = true
         }
     });
