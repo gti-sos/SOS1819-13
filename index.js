@@ -1,5 +1,4 @@
 var express = require("express");
-
 var bodyParser = require("body-parser");
 
 var app = express();
@@ -8,12 +7,16 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
+<<<<<<< HEAD
 app.listen(port, () => {
     console.log("Server ready on port " + port);
 });
 
 app.use("/", express.static(__dirname + "/public"));
 
+=======
+app.use("/", express.static(__dirname + "/public"))
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
 
 // API IVÁN
 var gasIncreases = [{
@@ -174,7 +177,11 @@ app.post("/api/v1/gasIncreases", (req, res) => {
     res.sendStatus(201);
 });
 
+<<<<<<< HEAD
 app.post("/api/v1/gasIncreases/:year", (req, res) => {
+=======
+app.post("/api/v1/gasIncreases/:year/:province", (req,res)=>{
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
     res.sendStatus(405);
 });
 
@@ -237,15 +244,27 @@ app.put("/api/v1/gasIncreases", (req, res) => {
 });
 
 // DELETE /gasIncreases/2017
+<<<<<<< HEAD
 app.delete("/api/v1/gasIncreases/:year", (req, res) => {
+=======
+app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
 
     var year = req.params.year;
+    var province = req.params.province;
     var found = false;
 
+<<<<<<< HEAD
     var updatedgasIncreases = gasIncreases.filter((d) => {
         if (d.year == year)
             found = true;
         return d.year != year;
+=======
+    var updatedgasIncreases = gasIncreases.filter((d) =>{
+        if(d.year==year && d.province==province)
+            found = true;
+        return d.year!=year && d.province!=province;
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
     });
 
     if (found == false) {
@@ -261,6 +280,7 @@ app.delete("/api/v1/gasIncreases/:year", (req, res) => {
 
 // API REST DIEGO
 // LOAD INITIAL DATA de GET /gasStations
+<<<<<<< HEAD
 app.get("/api/v1/gasStations/loadInitialData", (req, res) => {
     var newGasStations = [{
         year: "2017",
@@ -297,6 +317,44 @@ app.get("/api/v1/gasStations/loadInitialData", (req, res) => {
     newGasStations.forEach((d) => {
         gasStations.push(d);
     });
+=======
+app.get("/api/v1/gasStations/loadInitialData", (req,res)=>{
+var newGasStations = [{		
+    year: "2017",
+    province: "sevilla",
+    gasoleoAstations: "425",
+    gasoleoAplusstations: "255",
+    gasoleo98stations: "186"
+}, {		
+    year: "2017",		
+    province: "cadiz",
+    gasoleoAstations: "243",
+    gasoleoAplusstations: "165",
+    gasoleo98stations: "141"
+}, {		
+    year: "2018",		
+    province: "sevilla",
+    gasoleoAstations: "437",
+    gasoleoAplusstations: "252",
+    gasoleo98stations: "185"
+}, {		
+    year: "2018",		
+    province: "cadiz",
+    gasoleoAstations: "258",
+    gasoleoAplusstations: "167",
+    gasoleo98stations: "142"
+}, {		
+    year: "2018",
+    province: "madrid",		
+    gasoleoAstations: "710",
+    gasoleoAplusstations: "586",
+    gasoleo98stations: "510"
+}];
+
+    newGasStations.forEach( (d)=>{
+        gasStations.push(d)
+    })
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
     res.sendStatus(200);
 });
 
@@ -313,7 +371,11 @@ app.post("/api/v1/gasStations", (req, res) => {
     res.sendStatus(201);
 });
 
+<<<<<<< HEAD
 app.post("/api/v1/gasStations/:year", (req, res) => {
+=======
+app.post("/api/v1/gasStations/:year/:province", (req,res)=>{
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
     res.sendStatus(405);
 });
 
@@ -331,11 +393,19 @@ app.get("/api/v1/gasStations/:year/:province", (req, res) => {
     var year = req.params.year;
     var province = req.params.province;
 
+<<<<<<< HEAD
     var filteredgasStations = gasStations.filter((d) => {
         return d.year == year && d.province == province;
     });
 
     if (filteredgasStations.length >= 1) {
+=======
+    var filteredgasStations = gasStations.filter((d) =>{
+       return d.year == year && d.province==province; 
+    })
+    
+    if (filteredgasStations.length >= 1){
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
         res.send(filteredgasStations);
     } else {
         res.sendStatus(404);
@@ -375,11 +445,17 @@ app.put("/api/v1/gasStations", (req, res) => {
     res.sendStatus(405);
 });
 
+<<<<<<< HEAD
 // DELETE /gasStations/2017
 app.delete("/api/v1/gasStations/:year", (req, res) => {
+=======
+// DELETE /gasStations/2017/sevilla
+app.delete("/api/v1/gasStations/:province", (req,res)=>{
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
 
-    var year = req.params.year;
+    var province = req.params.province;
     var found = false;
+<<<<<<< HEAD
 
     var province = req.params.province;
 
@@ -387,6 +463,16 @@ app.delete("/api/v1/gasStations/:year", (req, res) => {
         if (d.year == year && d.province == province)
             found = true;
         return d.year != year && d.province != province;
+=======
+    
+    var updatedgasStations = gasStations.filter((d) =>{
+
+        if(d.province==province)
+
+            found = true;
+            return d.province!=province ;
+
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
     });
 
     if (found == false) {
@@ -398,6 +484,7 @@ app.delete("/api/v1/gasStations/:year", (req, res) => {
 });
 
 
+<<<<<<< HEAD
 // API REST JUANMA
 // LOAD INITIAL DATA de GET /provinceEmployment
 
@@ -441,6 +528,48 @@ app.get("/api/v1/provinceEmployment/loadInitialData", (req, res) => {
     }];
 
     newProvinceEmployment.forEach((d) => {
+=======
+app.get("/api/v1/provinceEmployment/loadInitialData", (req,res)=>{
+var newProvinceEmployment = [{
+    province: "cadiz",
+    year: "2018",
+    industryEmployment: 44250,
+    buildingEmployment: 35575,
+    servicesEmployment: 373400
+}, {
+    province: "madrid",
+    year: "2018",
+    industryEmployment: 267500,
+    buildingEmployment: 195175,
+    servicesEmployment: 2709675
+}, {
+    province: "sevilla",
+    year: "2018",
+    industryEmployment: 79950,
+    buildingEmployment: 49325,
+    servicesEmployment: 639775
+}, {
+    province: "cadiz",
+    year: "2017",
+    industryEmployment: 41975,
+    buildingEmployment: 28075,
+    servicesEmployment: 379400
+}, {   
+    province: "madrid",
+    year: "2017",
+    industryEmployment: 268725,
+    buildingEmployment: 166250,
+    servicesEmployment: 2660950
+}, {
+    province: "sevilla",
+    year: "2017",
+    industryEmployment: 81450,
+    buildingEmployment: 43525,
+    servicesEmployment: 627850  
+}];
+
+    newProvinceEmployment.forEach( (d)=>{
+>>>>>>> ff9f9442e9c2a44303179f25080eac0c1312edab
         provinceEmployment.push(d);
     });
     res.sendStatus(200);
@@ -540,4 +669,3 @@ app.delete("/api/v1/provinceEmployment/:year", (req, res) => {
     }
 
 });
-
