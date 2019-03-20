@@ -187,12 +187,13 @@ app.delete("/api/v1/gasIncreases", (req,res)=>{
 });
 
 // GET /gasIncreases/2017
-app.get("/api/v1/gasIncreases/:year", (req,res)=>{
+app.get("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
 
     var filteredgasIncreases = gasIncreases.filter((d) =>{
-       return d.year == year; 
+       return d.year == year && d.province==province; 
     })
     
     if (filteredgasIncreases.length >= 1){
@@ -325,13 +326,19 @@ app.delete("/api/v1/gasStations", (req,res)=>{
 });
 
 // GET /gasStations/2017
-app.get("/api/v1/gasStations/:year", (req,res)=>{
+app.get("/api/v1/gasStations/:year/:province", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
 
     var filteredgasStations = gasStations.filter((d) =>{
+<<<<<<< HEAD
        return d.year == year; 
     });
+=======
+       return d.year == year && d.province==province; 
+    })
+>>>>>>> ce8c3ee5aa874fa564ac66c806f8e83a50663c8d
     
     if (filteredgasStations.length >= 1){
         res.send(filteredgasStations);
@@ -378,11 +385,13 @@ app.delete("/api/v1/gasStations/:year", (req,res)=>{
 
     var year = req.params.year;
     var found = false;
+    
+    var province = req.params.province;
 
     var updatedgasStations = gasStations.filter((d) =>{
-        if(d.year==year)
+        if(d.year==year && d.province==province )
             found = true;
-        return d.year!=year;
+        return d.year!=year && d.province!=province;
     });
     
     if (found==false){
