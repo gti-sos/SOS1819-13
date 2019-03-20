@@ -279,12 +279,13 @@ app.delete("/api/v1/gasStations", (req,res)=>{
 });
 
 // GET /gasStations/2017
-app.get("/api/v1/gasStations/:year", (req,res)=>{
+app.get("/api/v1/gasStations/:year/:province", (req,res)=>{
 
     var year = req.params.year;
+    var province = req.params.province;
 
     var filteredgasStations = gasStations.filter((d) =>{
-       return d.year == year; 
+       return d.year == year && d.province==province; 
     })
     
     if (filteredgasStations.length >= 1){
