@@ -240,7 +240,7 @@ app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
     var province = req.params.province;
     var found = false;
 
-    var updatedgasIncreases = gasIncreases.map((d) =>{
+    var updatedgasIncreases = gasIncreases.filter((d) =>{
         if(d.year!=year && d.province!=province ) {
             return d
         } else {
