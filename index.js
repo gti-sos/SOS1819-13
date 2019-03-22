@@ -151,9 +151,8 @@ var newGasIncreases = [{
     gasnormalprice: "1.257"
 }];
 
-    gasIncreases = [];
-    gasIncreases = newGasIncreases;
-    gasIncreases.forEach( (d)=>{
+   
+    newGasIncreases.forEach((d) => {
         gasIncreases.push(d);
     });
     res.sendStatus(200);
@@ -299,9 +298,6 @@ app.get("/api/v1/gasStations/loadInitialData", (req, res) => {
         gasStations.push(d);
     });
 
-    newGasStations.forEach( (d)=>{
-        gasStations.push(d)
-    });
     res.sendStatus(200);
 });
 
