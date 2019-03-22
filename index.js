@@ -151,7 +151,8 @@ var newGasIncreases = [{
     gasnormalprice: "1.257"
 }];
 
-    newGasIncreases.forEach( (d)=>{
+    newGasIncreases = gasIncreases;
+    gasIncreases.forEach( (d)=>{
         gasIncreases.push(d);
     });
     res.sendStatus(200);
