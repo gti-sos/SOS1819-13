@@ -92,6 +92,28 @@ app.delete("/api/v1/gasIncreases", (req, res) => {
     
 });
 
+// GET /gasIncreases/2017
+app.get("/api/v1/gasIncreases/:year/:province", (req, res) => {
+    var year = req.params.year;
+    var province = req.params.province;
+    var i = 0;
+    var found = false;
+    var d = [];
+  
+    
+    gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        for(i=0;i<gasIncreasesArray.length;i++)
+            if (gasIncreasesArray[i].year==year&&gasIncreasesArray[i].province==province)
+                found = true;
+                d.push(gasIncreasesArray[i]);
+    });
+    
+    if (found==false)
+        res.sendStatus(404);
+    else
+        res.send(d);
+});
+
 // DELETE /gasIncreases/2017/sevila
 
 app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
