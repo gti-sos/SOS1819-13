@@ -183,7 +183,7 @@ app.delete("/api/v1/gasIncreases", (req, res) => {
     res.sendStatus(200);
 });
 
-// GET /gasIncreases/2017
+// GET /gasIncreases/2017/sevilla
 app.get("/api/v1/gasIncreases/:year/:province", (req, res) => {
 
     var year = req.params.year;
