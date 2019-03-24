@@ -87,15 +87,15 @@ var i = 0;
         for(i=0;i<gasIncreasesArray;i++)
             if (gasIncreasesArray[i].year==newGas.year && gasIncreasesArray[i].province==newGas.province && gasIncreasesArray[i].gasnormalprice==newGas.gasnormalprice && gasIncreasesArray[i].gasoleoAplusprice==newGas.gasoleoAplusprice && gasIncreasesArray[i].gasoleoAprice==newGas.gasoleoAprice)
                 coincide = true;
-    });
     
-    /*
+    
     if(coincide == true)
         res.sendStatus(409);
     else 
         gasIncreases.insert(newGas);
-        res.sendStatus(201);*/
-        res.send(newGas.gasoleoAplusprice);
+        res.sendStatus(201);
+        
+    });
 });
 
 app.post("/api/v1/gas-increases/:year/:province", (req,res)=>{
