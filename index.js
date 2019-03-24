@@ -81,8 +81,19 @@ app.get("/api/v1/gas-increases", (req,res)=>{
 // POST /gas-increases
 app.post("/api/v1/gas-increases", (req, res) => {
 var newGas = req.body;
-    gasIncreases.insert(newGas);
-    res.sendStatus(201);
+var coincide = false;
+var i = 0;
+    gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        for(i=0;i<gasIncreasesArray;i++)
+            if (gasIncreasesArray[i]==newGas)
+                coincide = true;
+    });
+    
+    if(coincide == true)
+        res.sendStatus(409);
+    else 
+        gasIncreases.insert(newGas);
+        res.sendStatus(201);
 });
 
 app.post("/api/v1/gas-increases/:year/:province", (req,res)=>{
