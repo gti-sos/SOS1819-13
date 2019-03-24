@@ -89,13 +89,12 @@ var i = 0;
                 coincide = true;
     
     
-    if(coincide == true)
+    if(coincide == true) {
         res.sendStatus(409);
-    else 
-        res.send(newGas.province); 
+    }else{ 
         gasIncreases.insert(newGas);
         res.sendStatus(201);
-        
+    } 
     });
 });
 
@@ -127,12 +126,12 @@ app.get("/api/v1/gas-increases/:year/:province", (req, res) => {
                 
     
     
-    if (updatedgasIncreases.length==0)
+    if (updatedgasIncreases.length==0){
         res.sendStatus(404);
         
-    else
+    }else{
         res.send(updatedgasIncreases);
-    
+    }
     
     }); 
 });
@@ -150,25 +149,27 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             for(i=0;i<gasIncreasesArray.length;i++)
                 if (gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province){
-                    if (updatedData._id==gasIncreasesArray[i]._id)
+                    if (updatedData._id==gasIncreasesArray[i]._id){
                         found = true;
-                    else
+                    }else{
                         coincide = false;
                     updatedgasIncreases.push(updatedData);
+                    }
                 } else {
                     updatedgasIncreases.push(gasIncreasesArray[i]);
                 }
         
-     if (coincide==false)
+     if (coincide==false){
         res.sendStatus(400);
-    else if (found==false)
+    }else if (found==false){
         res.sendStatus(404);
-    else
+    }else{
         gasIncreases.remove();
         updatedgasIncreases.filter((d) =>{
                 gasIncreases.insert(d);
             });
             res.sendStatus(200);
+    }
     });
 });
 
