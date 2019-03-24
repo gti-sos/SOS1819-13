@@ -129,20 +129,25 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
     var province = req.params.province;
     var updatedData = req.body;
     var found = false;
+    var coincide = true;
     var i = 0;
     var updatedgasIncreases = [];
     
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             for(i=0;i<gasIncreasesArray.length;i++)
                 if (gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province){
-                    found = true;
+                    if (updatedData._id==gasIncreasesArray[i]._id)
+                        found = true;
+                    else
+                        coincide = false;
                     updatedgasIncreases.push(updatedData);
                 } else {
                     updatedgasIncreases.push(gasIncreasesArray[i]);
                 }
         
-     
-    if (found==false)
+     if (coincide==false)
+        res.sendStatus(400);
+    else if (found==false)
         res.sendStatus(404);
     else
         gasIncreases.remove();
