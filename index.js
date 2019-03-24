@@ -8,7 +8,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 var gasIncreases;
 
 
-app.use("/", express.static(__dirname + "/public"));
 
 client.connect(err => {
   gasIncreases = client.db("mangalper").collection("gasIncreases");
