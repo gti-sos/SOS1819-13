@@ -143,6 +143,7 @@ app.put("/api/v1/gasIncreases/:year/:province", (req, res) => {
     if (found==false)
         res.sendStatus(404);
     else
+        gasIncreases.remove();
         updatedgasIncreases.filter((d) =>{
                 gasIncreases.insert(d);
             });
@@ -150,17 +151,20 @@ app.put("/api/v1/gasIncreases/:year/:province", (req, res) => {
     });
 });
 
+app.put("/api/v1/gasIncreases", (req, res) => {
+    res.sendStatus(405);
+});
+
+
 // DELETE /gasIncreases/2017/sevila
 
 app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
     var year = req.params.year;
     var province = req.params.province;
     var found = false;
-
     var updatedgasIncreases = [];
-    
-    
     var i = 0;
+    
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
         for(i=0;i<gasIncreasesArray.length;i++)
             if (gasIncreasesArray[i].year==year&&gasIncreasesArray[i].province==province)
@@ -168,10 +172,11 @@ app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
                 
             else
                 updatedgasIncreases.push(gasIncreasesArray[i]);
-        gasIncreases.remove();
+        
         if (found==false)
             res.sendStatus(404);
         else
+            gasIncreases.remove();
             updatedgasIncreases.filter((d) =>{
                 gasIncreases.insert(d);
             });
@@ -181,5 +186,5 @@ app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
 
 
 app.listen(port, () => {
-    console.log("Server ready on port " +port)
+    console.log("Server ready on port " +port);
 });
