@@ -23,36 +23,45 @@ app.use("/", express.static(__dirname + "/public"));
 
 //API IVAN
 var newGasIncreases = [{
-    year: "2017",
-    province: "sevilla",
-    gasoleoAprice: "1.121",
-    gasoleoAplusprice: "1.321",
-    gasnormalprice: "1.223"
-}, {
-    year: "2017",
-    province: "cadiz",
-    gasoleoAprice: "1.218",
-    gasoleoAplusprice: "1.420",
-    gasnormalprice: "1.270"
-}, {
-    year: "2018",
-    province: "sevilla",
-    gasoleoAprice: "1.221",
-    gasoleoAplusprice: "1.390",
-    gasnormalprice: "1.275"
-}, {
-    year: "2018",
-    province: "cadiz",
-    gasoleoAprice: "1.220",
-    gasoleoAplusprice: "1.410",
-    gasnormalprice: "1.240"
-}, {
-    year: "2018",
-    province: "madrid",
-    gasoleoAprice: "1.201",
-    gasoleoAplusprice: "1.401",
-    gasnormalprice: "1.257"
-}];
+        "_id": "5c97a609a885960017a3da13",
+        "year": "2017",
+        "province": "sevilla",
+        "gasoleoAprice": "1.121",
+        "gasoleoAplusprice": "1.321",
+        "gasnormalprice": "1.223"
+    },
+    {
+        "_id": "5c97a609a885960017a3da14",
+        "year": "2017",
+        "province": "cadiz",
+        "gasoleoAprice": "1.218",
+        "gasoleoAplusprice": "1.420",
+        "gasnormalprice": "1.270"
+    },
+    {
+        "_id": "5c97a609a885960017a3da15",
+        "year": "2018",
+        "province": "sevilla",
+        "gasoleoAprice": "1.221",
+        "gasoleoAplusprice": "1.390",
+        "gasnormalprice": "1.275"
+    },
+    {
+        "_id": "5c97a609a885960017a3da16",
+        "year": "2018",
+        "province": "cadiz",
+        "gasoleoAprice": "1.220",
+        "gasoleoAplusprice": "1.410",
+        "gasnormalprice": "1.240"
+    },
+    {
+        "_id": "5c97a609a885960017a3da17",
+        "year": "2018",
+        "province": "madrid",
+        "gasoleoAprice": "1.201",
+        "gasoleoAplusprice": "1.401",
+        "gasnormalprice": "1.257"
+    }];
 
 
 //API RES IVAN
