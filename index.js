@@ -7,8 +7,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 var gasIncreases;
 
-
-
 client.connect(err => {
   gasIncreases = client.db("mangalper").collection("gasIncreases");
   console.log("Connected!");
@@ -58,8 +56,8 @@ var newGasIncreases = [{
 
 
 //API RES IVAN
-//LOAD INITIAL DATA de GET /gasIncreases
-app.get("/api/v1/gasIncreases/loadInitialData", (req,res)=>{
+//LOAD INITIAL DATA de GET /gas-increases
+app.get("/api/v1/gas-increases/loadInitialData", (req,res)=>{
     gasIncreases.remove();
     newGasIncreases.filter((d) =>{
         gasIncreases.insert(d);
@@ -68,8 +66,8 @@ app.get("/api/v1/gasIncreases/loadInitialData", (req,res)=>{
     res.sendStatus(200);
 });
 
-// GET /gasIncreases
-app.get("/api/v1/gasIncreases", (req,res)=>{
+// GET /gas-increases
+app.get("/api/v1/gas-increases", (req,res)=>{
     
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
         if(error)
@@ -80,19 +78,19 @@ app.get("/api/v1/gasIncreases", (req,res)=>{
    
 });
 
-// POST /gasIncreases
-app.post("/api/v1/gasIncreases", (req, res) => {
+// POST /gas-increases
+app.post("/api/v1/gas-increases", (req, res) => {
 var newGas = req.body;
     gasIncreases.insert(newGas);
     res.sendStatus(201);
 });
 
-app.post("/api/v1/gasIncreases/:year/:province", (req,res)=>{
+app.post("/api/v1/gas-increases/:year/:province", (req,res)=>{
     res.sendStatus(405);
 });
 
-// DELETE /gasIncreases
-app.delete("/api/v1/gasIncreases", (req, res) => {
+// DELETE /gas-increases
+app.delete("/api/v1/gas-increases", (req, res) => {
     
    gasIncreases.remove();
    res.sendStatus(200);
@@ -100,8 +98,8 @@ app.delete("/api/v1/gasIncreases", (req, res) => {
     
 });
 
-// GET /gasIncreases/2017/sevilla
-app.get("/api/v1/gasIncreases/:year/:province", (req, res) => {
+// GET /gas-increases/2017/sevilla
+app.get("/api/v1/gas-increases/:year/:province", (req, res) => {
     var year = req.params.year;
     var province = req.params.province;
     var i = 0;
@@ -125,8 +123,8 @@ app.get("/api/v1/gasIncreases/:year/:province", (req, res) => {
     }); 
 });
 
-// PUT /gasIncreases/2017
-app.put("/api/v1/gasIncreases/:year/:province", (req, res) => {
+// PUT /gas-increases/2017
+app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
     var year = req.params.year;
     var province = req.params.province;
     var updatedData = req.body;
@@ -155,14 +153,14 @@ app.put("/api/v1/gasIncreases/:year/:province", (req, res) => {
     });
 });
 
-app.put("/api/v1/gasIncreases", (req, res) => {
+app.put("/api/v1/gas-increases", (req, res) => {
     res.sendStatus(405);
 });
 
 
-// DELETE /gasIncreases/2017/sevila
+// DELETE /gas-increases/2017/sevila
 
-app.delete("/api/v1/gasIncreases/:year/:province", (req,res)=>{
+app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
     var year = req.params.year;
     var province = req.params.province;
     var found = false;
