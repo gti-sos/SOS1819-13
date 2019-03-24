@@ -92,7 +92,7 @@ var i = 0;
     if(coincide == true)
         res.sendStatus(409);
     else 
-        res.send(newGas.province);
+        res.send(newGas.province); 
         gasIncreases.insert(newGas);
         res.sendStatus(201);
         
