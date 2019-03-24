@@ -1,8 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
-var app = express();
-
 const MongoClient = require("mongodb").MongoClient;
 const uri = "mongodb+srv://test:test@mangalper1-o8j8b.mongodb.net/mangalper1?retryWrites=true";
 const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -23,6 +21,8 @@ var app = express();
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
+
+app.use("/", express.static(__dirname + "/public"));
 
 //API IVAN
 var newGasIncreases = [{
