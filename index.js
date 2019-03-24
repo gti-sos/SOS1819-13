@@ -85,7 +85,7 @@ var coincide = false;
 var i = 0;
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
         for(i=0;i<gasIncreasesArray;i++)
-            if (gasIncreasesArray[i]==newGas)
+            if (gasIncreasesArray[i].year==newGas.year && gasIncreasesArray[i].province==newGas.province && gasIncreasesArray[i].gasnormalprice==newGas.gasnormalprice && gasIncreasesArray[i].gasoleoAplusprice==newGas.gasoleoAplusprice && gasIncreasesArray[i].gasoleoAprice==newGas.gasoleoAprice)
                 coincide = true;
     });
     
