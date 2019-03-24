@@ -89,11 +89,13 @@ var i = 0;
                 coincide = true;
     });
     
+    /*
     if(coincide == true)
         res.sendStatus(409);
     else 
         gasIncreases.insert(newGas);
-        res.sendStatus(201);
+        res.sendStatus(201);*/
+        res.send(newGas.gasoleoAplusprice);
 });
 
 app.post("/api/v1/gas-increases/:year/:province", (req,res)=>{
