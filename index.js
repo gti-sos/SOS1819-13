@@ -13,6 +13,16 @@ client.connect(err => {
   // perform actions on the collection object
 });
 
+const uri_drp = "mongodb+srv://test:test@sos1819-drp-rwvk5.mongodb.net/test?retryWrites=true";
+const client_drp = new MongoClient(uri_drp, { useNewUrlParser: true });
+
+var gasStations;
+
+client_drp.connect(err => {
+    
+    gasStations = client_drp.db("sos1819-drp").collection("gasStations");
+    console.log("Connected!");
+});
 
 var app = express();
 app.use(bodyParser.json());
