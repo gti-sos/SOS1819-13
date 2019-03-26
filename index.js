@@ -72,7 +72,7 @@ var newGasIncreases = [{
 //API RES IVAN
 
 // GET /api/v1/gas-increases/docs/
-app.get("/api/v1/gas-increases/loadInitialData", (req,res)=>{
+app.get("/api/v1/gas-increases/docs", (req,res)=>{
     res.redirect("https://www.getpostman.com/collections/62723fe2c978d28c23fd");
 });
 
