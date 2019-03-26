@@ -33,7 +33,6 @@ app.use("/", express.static(__dirname + "/public"));
 
 //API IVAN
 var newGasIncreases = [{
-        "_id": "5c97a609a885960017a3da13",
         "year": "2017",
         "province": "sevilla",
         "gasoleoAprice": "1.121",
@@ -41,7 +40,6 @@ var newGasIncreases = [{
         "gasnormalprice": "1.223"
     },
     {
-        "_id": "5c97a609a885960017a3da14",
         "year": "2017",
         "province": "cadiz",
         "gasoleoAprice": "1.218",
@@ -49,7 +47,6 @@ var newGasIncreases = [{
         "gasnormalprice": "1.270"
     },
     {
-        "_id": "5c97a609a885960017a3da15",
         "year": "2018",
         "province": "sevilla",
         "gasoleoAprice": "1.221",
@@ -57,7 +54,6 @@ var newGasIncreases = [{
         "gasnormalprice": "1.275"
     },
     {
-        "_id": "5c97a609a885960017a3da16",
         "year": "2018",
         "province": "cadiz",
         "gasoleoAprice": "1.220",
@@ -65,7 +61,6 @@ var newGasIncreases = [{
         "gasnormalprice": "1.240"
     },
     {
-        "_id": "5c97a609a885960017a3da17",
         "year": "2018",
         "province": "madrid",
         "gasoleoAprice": "1.201",
@@ -75,14 +70,26 @@ var newGasIncreases = [{
 
 
 //API RES IVAN
+
+// GET /api/v1/gas-increases/docs/
+app.get("/api/v1/gas-increases/docs", (req,res)=>{
+    res.redirect("https://www.getpostman.com/collections/62723fe2c978d28c23fd");
+});
+
+
 //LOAD INITIAL DATA de GET /gas-increases
 app.get("/api/v1/gas-increases/loadInitialData", (req,res)=>{
-    gasIncreases.remove();
-    newGasIncreases.filter((d) =>{
-        gasIncreases.insert(d);
+    gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        if(gasIncreasesArray.length!=0){
+            res.sendStatus(409);
+        } else {
+            gasIncreases.remove();
+            newGasIncreases.filter((d) =>{
+                gasIncreases.insert(d);
+            });
+            res.sendStatus(200);
+        }
     });
-        
-    res.sendStatus(200);
 });
 
 // GET /gas-increases
@@ -168,11 +175,11 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             for(i=0;i<gasIncreasesArray.length;i++)
                 if (gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province){
-                    if (updatedData._id==gasIncreasesArray[i]._id){
+                    if (gasIncreasesArray[i].year==updatedData.year && gasIncreasesArray[i].province==updatedData.province){
                         found = true;
+                        updatedgasIncreases.push(updatedData);
                     }else{
                         coincide = false;
-                    updatedgasIncreases.push(updatedData);
                     }
                 } else {
                     updatedgasIncreases.push(gasIncreasesArray[i]);
