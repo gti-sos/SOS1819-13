@@ -225,6 +225,157 @@ app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
     });
 });
 
+//API RES DIEGO
+//LOAD INITIAL DATA de GET /gas-stations
+app.get("/api/v1/gas-stations/loadInitialData", (req,res)=>{
+    gasStations.remove();
+    newGasStations.filter((d) =>{
+        gasStations.insert(d);
+    });
+        
+    res.sendStatus(200);
+});
+
+// GET /gas-stations
+app.get("/api/v1/gas-stations", (req,res)=>{
+    
+    gasStations.find({}).toArray((error,gasStationsArray)=>{
+        if(error)
+            console.log("Error");
+        res.send(gasStationsArray);
+    });
+    
+   
+});
+
+// POST /gas-stations
+app.post("/api/v1/gas-stations", (req, res) => {
+var newGas = req.body;
+var coincide = false;
+var i = 0;
+    gasStations.find({}).toArray((error,gasStationsArray)=>{
+        for(i=0;i<gasStationsArray.length;i++)
+            if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasoleo98stations==newGas.gasoleo98stations && gasStationsArray[i].gasoleoAplusstations==newGas.gasoleoAplusstations && gasStationsArray[i].gasoleoAstations==newGas.gasoleoAstations)
+                coincide = true;
+    
+    
+    if(coincide == true) {
+        res.sendStatus(409);
+    }else{ 
+        gasStations.insert(newGas);
+        res.sendStatus(201);
+    } 
+    });
+});
+
+app.post("/api/v1/gas-stations/:year/:province", (req,res)=>{
+    res.sendStatus(405);
+});
+
+// DELETE /gas-stations
+app.delete("/api/v1/gas-stations", (req, res) => {
+    
+   gasStations.remove();
+   res.sendStatus(200);
+    
+    
+});
+
+// GET /gas-stations/2017/sevilla
+app.get("/api/v1/gas-stations/:year/:province", (req, res) => {
+    var year = req.params.year;
+    var province = req.params.province;
+    var i = 0;
+    var updatedgasStations = [];
+    
+    
+    gasStations.find({}).toArray((error,gasStationsArray)=>{
+        for(i=0;i<gasStationsArray.length;i++)
+            if(gasStationsArray[i].year==year && gasStationsArray[i].province==province)
+                updatedgasStations.push(gasStationsArray[i]);
+                
+    
+    
+    if (updatedgasStations.length==0){
+        res.sendStatus(404);
+        
+    }else{
+        res.send(updatedgasStations);
+    }
+    
+    }); 
+});
+
+// PUT /gas-stations/2017
+app.put("/api/v1/gas-stations/:year/:province", (req, res) => {
+    var year = req.params.year;
+    var province = req.params.province;
+    var updatedData = req.body;
+    var found = false;
+    var coincide = true;
+    var i = 0;
+    var updatedgasStations = [];
+    
+    gasStations.find({}).toArray((error,gasStationsArray)=>{
+            for(i=0;i<gasStationsArray.length;i++)
+                if (gasStationsArray[i].year==year && gasStationsArray[i].province==province){
+                    if (updatedData._id==gasStationsArray[i]._id){
+                        found = true;
+                    }else{
+                        coincide = false;
+                    updatedgasStations.push(updatedData);
+                    }
+                } else {
+                    updatedgasStations.push(gasStationsArray[i]);
+                }
+        
+     if (coincide==false){
+        res.sendStatus(400);
+    }else if (found==false){
+        res.sendStatus(404);
+    }else{
+        gasStations.remove();
+        updatedgasStations.filter((d) =>{
+                gasStations.insert(d);
+            });
+            res.sendStatus(200);
+    }
+    });
+});
+
+app.put("/api/v1/gas-stations", (req, res) => {
+    res.sendStatus(405);
+});
+
+
+// DELETE /gas-stations/2017/sevila
+
+app.delete("/api/v1/gas-stations/:year/:province", (req,res)=>{
+    var year = req.params.year;
+    var province = req.params.province;
+    var found = false;
+    var updatedgasStations = [];
+    var i = 0;
+    
+    gasStations.find({}).toArray((error,gasStationsArray)=>{
+        for(i=0;i<gasStationsArray.length;i++)
+            if (gasStationsArray[i].year==year&&gasStationsArray[i].province==province)
+                found = true;
+                
+            else
+                updatedgasStations.push(gasStationsArray[i]);
+        
+        if (found==false)
+            res.sendStatus(404);
+        else
+            gasStations.remove();
+            updatedgasStations.filter((d) =>{
+                gasStations.insert(d);
+            });
+            res.sendStatus(200);
+    });
+});
+
 
 app.listen(port, () => {
     console.log("Server ready on port " +port);
