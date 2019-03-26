@@ -219,6 +219,7 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
                         if(updatedData._id != null) {
                             if(gasIncreasesArray[i]._id != updatedData._id)
                                 aut = false;
+                                found = true;
                         } else {
                         found = true;
                         updatedgasIncreases.push(updatedData);
