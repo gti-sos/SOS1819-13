@@ -1,38 +1,13 @@
+##  SOS1819-13
 
-<!DOCTYPE html>
-<html>
-
-<head>
-
-</head>
-
-<body>
-
-    <h1>SOS1819-13</h1>
-
-    <h3>Team</h3>
-    <ul>
-        <li><h3> <a href="https://github.com/dieruiper">Diego Ruiz Perez</a></h3></li>
-        <li><h3> <a href="https://github.com/mangalper1">Manuel Iván Gálvez Pérez</a></h3></li>
-        <li><h3> <a href="https://github.com/juanma71">Juan Manuel Arteaga Delgado</a></h3></li>
-    </ul>
-
-    <h3>Project description:</h3>
-    <p>Our information sources are made for the purpose of analising the actual relationship existant between the increase on price of gas,  decrease in car sales and employment by provinces in Spain.</p>
-
-    <h3>Repository:</h3>
-    <a href="https://github.com/gti-sos/SOS1819-13">[gti-sos/SOS1819-13]</a>
-
-    <h3>URL:</h3>
-    <a href="http://sos1819-13.herokuapp.com/">http://sos1819-13.herokuapp.com/</a>
-
-    <h3>APIs:</h3>
-    <ul>
-        <li><a href="https://sos1819-13.herokuapp.com/api/v1/gasStations">[https://sos1819-13.herokuapp.com/api/v1/gasStations]</a><a href="http://observatoriotransporte.fomento.es/bdotle/visorBDpop.aspx?i=378"> Fuente </a> (developed by <a href="https://github.com/dieruiper">Diego Ruiz Pérez)</a></li>
-        <li><a href="https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs">[https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs]</a><a href="https://www.dieselogasolina.com/historico-de-precios-gasolina-y-diesel-en-espana.html"> Fuente </a> (developed by <a href="https://github.com/mangalper1">Manuel Iván Gálvez Pérez)</a></a></li>
-        <li><a href="https://sos1819-13.herokuapp.com/api/v1/provinceEmployment">[https://sos1819-13.herokuapp.com/api/v1/provinceEmployment]</a><a href="http://www.ine.es/jaxiT3/Tabla.htm?t=3990&L=0"> Fuente </a> (developed by <a href="https://github.com/juanma71">Juan Manuel Arteaga Delgado)</a></li>
-    </ul>
-
-</body>
-
-</html>
+- **Team**
+  - [Diego Ruiz Perez](https://github.com/dieruiper)
+  - [Manuel Ivan Galvez Perez](https://github.com/mangalper1)
+  - [Juan Manuel Arteaga Delgado](https://github.com/juanma71)
+- **Project description**:  Our information sources are made for the purpose of analising the actual relationship existant between the increase on price of gas,  decrease in car sales and employment by provinces in Spain.
+- **Repository**: [gti-sos/SOS1819-13](https://github.com/gti-sos/SOS1819-13)
+- **URL**: http://sos1819-13.herokuapp.com/
+-  **APIs**:
+    - [https://sos1819-13.herokuapp.com/api/v1/gasStations](https://sos1819-13.herokuapp.com/api/v1/gasStations) (developed by [Student 1](https://github.com/dieruiper))
+    - [https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs]https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs) (developed by [Student 2](https://github.com/mangalper1))
+    - [https://sos1819-13.herokuapp.com/api/v1/provinceEmployment](https://sos1819-13.herokuapp.com/api/v1/provinceEmployment) (developed by [Student 3](https://github.com/juanma71))
