@@ -237,8 +237,8 @@ app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
 
 // GET /api/v1/gas-stations/docs/
 app.get("/api/v1/gas-stations/docs", (req,res)=>{
-    res.redirect("https://documenter.getpostman.com/view/62723fe2c978d28c23fd");
-    // https://www.getpostman.com/collections/62723fe2c978d28c23fd
+    res.redirect("https://documenter.getpostman.com/");
+    // https://www.getpostman.com/
 });
 
 
@@ -276,7 +276,7 @@ var coincide = false;
 var i = 0;
     gasStations.find({}).toArray((error,gasStationsArray)=>{
         for(i=0;i<gasStationsArray.length;i++)
-            if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasnormalprice==newGas.gasnormalprice && gasStationsArray[i].gasoleoAplusprice==newGas.gasoleoAplusprice && gasStationsArray[i].gasoleoAprice==newGas.gasoleoAprice)
+            if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasoleo98stations==newGas.gasoleo98stations && gasStationsArray[i].gasoleoAplusstations==newGas.gasoleoAplusstations && gasStationsArray[i].gasoleoAstations==newGas.gasoleoAstations)
                 coincide = true;
     
     
