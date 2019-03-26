@@ -76,6 +76,7 @@ app.get("/api/v1/gas-increases/docs", (req,res)=>{
     res.redirect("https://www.documenter.getpostman.com/collections/62723fe2c978d28c23fd");
 });
 
+
 //LOAD INITIAL DATA de GET /gas-increases
 app.get("/api/v1/gas-increases/loadInitialData", (req,res)=>{
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
