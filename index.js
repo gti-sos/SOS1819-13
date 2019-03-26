@@ -459,3 +459,55 @@ app.delete("/api/v1/gas-stations/:year/:province", (req,res)=>{
 app.listen(port, () => {
     console.log("Server ready on port " +port);
 });
+
+
+//API JUANMA
+
+const uri_jma = "mongodb+srv://jmad:jmad@cluster0-oxc4d.mongodb.net/cluster0?retryWrites=true";
+
+const client_jma = new MongoClient(uri_jma, { useNewUrlParser: true });
+
+var employments;
+
+client_jma.connect(err => {
+  
+  employments = client_jma.db("sos1819-jma").collection("employments");
+    console.log("Connected!");
+
+});
+
+
+// GET /province-employments
+
+app.get("/api/v1/province-employments", (req,res)=>{
+    
+    employments.find({}).toArray((error,employmentsArray)=>{
+        
+        if(error)
+            console.log("Error: "+error);
+        
+        res.send(employmentsArray);
+    });
+    
+});
+
+// POST /province-employments
+
+app.post("/api/v1/province-employments", (req, res) => {
+    var newEmployment = req.body;
+    var coincide = false;
+    var i = 0;
+    
+    employments.find({}).toArray((error,employmentsArray)=>{
+        for(i=0;i<employmentsArray.length;i++)
+            if (employmentsArray[i].year==newEmployment.year && employmentsArray[i].province==newEmployment.province && employmentsArray[i].industryEmployment==newEmployment.industryEmployment && employmentsArray[i].buildingEmployment==newEmployment.buildingEmployment && employmentsArray[i].servicesEmployment==newEmployment.servicesEmployment)
+                coincide = true;
+    
+    if(coincide == true) {
+        res.sendStatus(409);
+    }else{ 
+        employments.insert(newEmployment);
+        res.sendStatus(201);
+    } 
+    });
+});
