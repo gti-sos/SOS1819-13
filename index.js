@@ -144,31 +144,36 @@ app.post("/api/v1/gas-increases", (req, res) => {
 var newGas = req.body;
 var coincide = false;
 var i = 0;
-    gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
-        for(i=0;i<gasIncreasesArray.length;i++)
-            if (gasIncreasesArray[i].year==newGas.year && gasIncreasesArray[i].province==newGas.province && gasIncreasesArray[i].gasnormalprice==newGas.gasnormalprice && gasIncreasesArray[i].gasoleoAplusprice==newGas.gasoleoAplusprice && gasIncreasesArray[i].gasoleoAprice==newGas.gasoleoAprice)
-                coincide = true;
-    
-    
-    if(coincide == true) {
-        res.sendStatus(409);
-    }else{ 
-        gasIncreases.insert(newGas);
-        res.sendStatus(201);
-    } 
+
+    if (newGas.year == null || newGas.province == null ||newGas.gasoleoAprice == null ||newGas.gasnormalprice == null ||newGas.gasoleoAplusprice == null){
+        res.sendStatus(400);
+    }else{
+        gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+            for(i=0;i<gasIncreasesArray.length;i++)
+                if (gasIncreasesArray[i].year==newGas.year && gasIncreasesArray[i].province==newGas.province && gasIncreasesArray[i].gasnormalprice==newGas.gasnormalprice && gasIncreasesArray[i].gasoleoAplusprice==newGas.gasoleoAplusprice && gasIncreasesArray[i].gasoleoAprice==newGas.gasoleoAprice)
+                    coincide = true;
+        
+        
+        if(coincide == true) {
+            res.sendStatus(409);
+        }else{ 
+            gasIncreases.insert(newGas);
+            res.sendStatus(201);
+        } 
+        });
+    }
     });
-});
-
-app.post("/api/v1/gas-increases/:year/:province", (req,res)=>{
-    res.sendStatus(405);
-});
-
-// DELETE /gas-increases
-app.delete("/api/v1/gas-increases", (req, res) => {
     
-   gasIncreases.remove();
-   res.sendStatus(200);
+    app.post("/api/v1/gas-increases/:year/:province", (req,res)=>{
+        res.sendStatus(405);
+    });
     
+    // DELETE /gas-increases
+    app.delete("/api/v1/gas-increases", (req, res) => {
+        
+       gasIncreases.remove();
+       res.sendStatus(200);
+    }
     
 });
 
@@ -308,6 +313,7 @@ app.post("/api/v1/gas-stations", (req, res) => {
 var newGas = req.body;
 var coincide = false;
 var i = 0;
+
     gasStations.find({}).toArray((error,gasStationsArray)=>{
         for(i=0;i<gasStationsArray.length;i++)
             if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasoleo98stations==newGas.gasoleo98stations && gasStationsArray[i].gasoleoAplusstations==newGas.gasoleoAplusstations && gasStationsArray[i].gasoleoAstations==newGas.gasoleoAstations)
