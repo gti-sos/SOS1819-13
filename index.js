@@ -107,8 +107,7 @@ var newGasStations = [{
 
 // GET /api/v1/gas-increases/docs/
 app.get("/api/v1/gas-increases/docs", (req,res)=>{
-    res.redirect("https://documenter.getpostman.com/view/62723fe2c978d28c23fd");
-    // https://www.getpostman.com/collections/62723fe2c978d28c23fd
+    res.redirect("https://documenter.getpostman.com/view/6914720/S17tRTs7");
 });
 
 
