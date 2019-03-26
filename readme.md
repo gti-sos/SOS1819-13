@@ -9,5 +9,5 @@
 - **URL**: http://sos1819-13.herokuapp.com/
 -  **APIs**:
     - [https://sos1819-13.herokuapp.com/api/v1/gas-stations](https://sos1819-13.herokuapp.com/api/v1/gas-stations) (developed by [Diego Ruiz Pérez](https://github.com/dieruiper))
-    - [https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs]https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs) (developed by [Manuel Iván Gálvez Pérez](https://github.com/mangalper1))
+    - [https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs](https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs) (developed by [Manuel Iván Gálvez Pérez](https://github.com/mangalper1))
     - [https://sos1819-13.herokuapp.com/api/v1/provinceEmployment](https://sos1819-13.herokuapp.com/api/v1/provinceEmployment) (developed by [Juan Manuel Arteaga Delgado](https://github.com/juanma71))
