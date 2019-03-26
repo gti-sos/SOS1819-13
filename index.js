@@ -168,12 +168,11 @@ var i = 0;
         res.sendStatus(405);
     });
     
-    // DELETE /gas-increases
-    app.delete("/api/v1/gas-increases", (req, res) => {
+// DELETE /gas-increases
+ app.delete("/api/v1/gas-increases", (req, res) => {
         
        gasIncreases.remove();
        res.sendStatus(200);
-    }
     
 });
 
