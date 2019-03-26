@@ -77,12 +77,17 @@ var newGasIncreases = [{
 //API RES IVAN
 //LOAD INITIAL DATA de GET /gas-increases
 app.get("/api/v1/gas-increases/loadInitialData", (req,res)=>{
-    gasIncreases.remove();
-    newGasIncreases.filter((d) =>{
-        gasIncreases.insert(d);
+    gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        if(gasIncreasesArray.length!=0){
+            res.sendStatus(409);
+        } else {
+            gasIncreases.remove();
+            newGasIncreases.filter((d) =>{
+                gasIncreases.insert(d);
+            });
+            res.sendStatus(200);
+        }
     });
-        
-    res.sendStatus(200);
 });
 
 // GET /gas-increases
