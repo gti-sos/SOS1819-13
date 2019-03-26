@@ -8,6 +8,6 @@
 - **Repository**: [gti-sos/SOS1819-13](https://github.com/gti-sos/SOS1819-13)
 - **URL**: http://sos1819-13.herokuapp.com/
 -  **APIs**:
-    - [https://sos1819-13.herokuapp.com/api/v1/gasStations](https://sos1819-13.herokuapp.com/api/v1/gasStations) (developed by [Student 1](https://github.com/dieruiper))
-    - [https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs]https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs) (developed by [Student 2](https://github.com/mangalper1))
-    - [https://sos1819-13.herokuapp.com/api/v1/provinceEmployment](https://sos1819-13.herokuapp.com/api/v1/provinceEmployment) (developed by [Student 3](https://github.com/juanma71))
+    - [https://sos1819-13.herokuapp.com/api/v1/gasStations](https://sos1819-13.herokuapp.com/api/v1/gasStations) (developed by [Diego Ruiz Pérez](https://github.com/dieruiper))
+    - [https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs]https://sos1819-13.herokuapp.com/api/v1/gas-increases/docs) (developed by [Manuel Iván Gálvez Pérez](https://github.com/mangalper1))
+    - [https://sos1819-13.herokuapp.com/api/v1/provinceEmployment](https://sos1819-13.herokuapp.com/api/v1/provinceEmployment) (developed by [Juan Manuel Arteaga Delgado](https://github.com/juanma71))
