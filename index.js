@@ -107,7 +107,7 @@ var newGasStations = [{
 
 // GET /api/v1/gas-increases/docs/
 app.get("/api/v1/gas-increases/docs", (req,res)=>{
-    res.redirect("https://documenter.getpostman.com/view/6925017/S17tRnta");
+    res.redirect("https://documenter.getpostman.com/view/6914720/S17tRTs7");
 });
 
 
@@ -282,7 +282,7 @@ app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
 //API RES DIEGO
 // GET /api/v1/gas-stations/docs/
 app.get("/api/v1/gas-stations/docs", (req,res)=>{
-    res.redirect("https://documenter.getpostman.com/");
+    res.redirect("https://documenter.getpostman.com/view/6925017/S17tRnta");
 });
 
 
