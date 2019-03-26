@@ -173,7 +173,7 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             for(i=0;i<gasIncreasesArray.length;i++)
                 if (gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province){
-                    if (updatedData._id==gasIncreasesArray[i]._id){
+                    if (gasIncreasesArray[i].year==updatedData.year && gasIncreasesArray[i].province==updatedData.province){
                         found = true;
                     }else{
                         coincide = false;
