@@ -210,13 +210,19 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
     var coincide = true;
     var i = 0;
     var updatedgasIncreases = [];
+    var aut = true;
     
     gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             for(i=0;i<gasIncreasesArray.length;i++)
                 if (gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province){
                     if (gasIncreasesArray[i].year==updatedData.year && gasIncreasesArray[i].province==updatedData.province){
+                        if(updatedData._id != null) {
+                            if(gasIncreasesArray[i]._id != updatedData._id)
+                                aut = false;
+                        } else {
                         found = true;
                         updatedgasIncreases.push(updatedData);
+                        }    
                     }else{
                         coincide = false;
                     }
@@ -228,6 +234,8 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
         res.sendStatus(400);
     }else if (found==false){
         res.sendStatus(404);
+    } else if (aut == false){
+        res.sendStatus(401);
     }else{
         gasIncreases.remove();
         updatedgasIncreases.filter((d) =>{
