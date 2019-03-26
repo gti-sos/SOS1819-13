@@ -467,13 +467,69 @@ const uri_jma = "mongodb+srv://jmad:jmad@cluster0-oxc4d.mongodb.net/cluster0?ret
 
 const client_jma = new MongoClient(uri_jma, { useNewUrlParser: true });
 
-var employments;
+var provinceEmployments;
 
 client_jma.connect(err => {
   
-  employments = client_jma.db("sos1819-jma").collection("employments");
+    provinceEmployments = client_jma.db("sos1819-jma").collection("employments");
     console.log("Connected!");
 
+});
+
+var newProvinceEmployments = [{
+    "province": "cadiz",
+    "year": "2018",
+    "industryEmployment": "44250",
+    "buildingEmployment": "35575",
+    "servicesEmployment": "373400"
+}, {
+    "province": "madrid",
+    "year": "2018",
+    "industryEmployment": "267500",
+    "buildingEmployment": "195175",
+    "servicesEmployment": "2709675"
+}, {
+    "province": "sevilla",
+    "year": "2018",
+    "industryEmployment": "79950",
+    "buildingEmployment": "49325",
+    "servicesEmployment": "639775"
+}, {
+    "province": "madrid",
+    "year": "2017",
+    "industryEmployment": "268725",
+    "buildingEmployment": "166250",
+    "servicesEmployment": "2660950"
+}, {
+    "province": "sevilla",
+    "year": "2017",
+    "industryEmployment": "81450",
+    "buildingEmployment": "43525",
+    "servicesEmployment": "627850"
+}];
+
+
+// GET /api/v1/province-employments/docs/
+
+app.get("/api/v1/province-employments/docs", (req,res)=>{
+    res.redirect("https://documenter.getpostman.com/");
+});
+
+
+//LOAD INITIAL DATA de GET /province-employments
+
+app.get("/api/v1/province-employments/loadInitialData", (req,res)=>{
+    provinceEmployments.find({}).toArray((error,provinceEmploymentsArray)=>{
+        if(provinceEmploymentsArray.length!=0){
+            res.sendStatus(409);
+        } else {
+            provinceEmployments.remove();
+            newProvinceEmployments.filter((d) =>{
+                provinceEmployments.insert(d);
+            });
+            res.sendStatus(200);
+        }
+    });
 });
 
 
@@ -481,12 +537,12 @@ client_jma.connect(err => {
 
 app.get("/api/v1/province-employments", (req,res)=>{
     
-    employments.find({}).toArray((error,employmentsArray)=>{
+    provinceEmployments.find({}).toArray((error,provinceEmploymentsArray)=>{
         
         if(error)
             console.log("Error: "+error);
         
-        res.send(employmentsArray);
+        res.send(provinceEmploymentsArray);
     });
     
 });
@@ -494,20 +550,144 @@ app.get("/api/v1/province-employments", (req,res)=>{
 // POST /province-employments
 
 app.post("/api/v1/province-employments", (req, res) => {
-    var newEmployment = req.body;
+    var newProvinceEmployments = req.body;
     var coincide = false;
     var i = 0;
+
+    if (newProvinceEmployments.province == null || newProvinceEmployments.year == null || newProvinceEmployments.industryEmployment == null || newProvinceEmployments.buildingEmployment == null || newProvinceEmployments.servicesEmployment == null){
+        res.sendStatus(400);
+    }else{
+        provinceEmployments.find({}).toArray((error,provinceEmploymentsArray)=>{
+            for(i=0;i<provinceEmploymentsArray.length;i++)
+                if (provinceEmploymentsArray[i].province==newProvinceEmployments.province && provinceEmploymentsArray[i].year==newProvinceEmployments.year && provinceEmploymentsArray[i].industryEmployment==newProvinceEmployments.industryEmployment && provinceEmploymentsArray[i].buildingEmployment==newProvinceEmployments.buildingEmployment && provinceEmploymentsArray[i].servicesEmployment==newProvinceEmployments.servicesEmployment)
+                    coincide = true;
+        
+        
+        if(coincide == true) {
+            res.sendStatus(409);
+        }else{ 
+            provinceEmployments.insert(newProvinceEmployments);
+            res.sendStatus(201);
+        } 
+        });
+    }
+    });
     
-    employments.find({}).toArray((error,employmentsArray)=>{
-        for(i=0;i<employmentsArray.length;i++)
-            if (employmentsArray[i].year==newEmployment.year && employmentsArray[i].province==newEmployment.province && employmentsArray[i].industryEmployment==newEmployment.industryEmployment && employmentsArray[i].buildingEmployment==newEmployment.buildingEmployment && employmentsArray[i].servicesEmployment==newEmployment.servicesEmployment)
-                coincide = true;
+    app.post("/api/v1/province.employments/:province/:year", (req,res)=>{
+        res.sendStatus(405);
+    });
     
-    if(coincide == true) {
-        res.sendStatus(409);
-    }else{ 
-        employments.insert(newEmployment);
-        res.sendStatus(201);
-    } 
+
+// DELETE /province-employments
+
+ app.delete("/api/v1/province-employments", (req, res) => {
+        
+       provinceEmployments.remove();
+       res.sendStatus(200);
+    
+});
+
+
+// GET /province-employments/sevilla/2017
+
+app.get("/api/v1/province-employments/:province/:year", (req, res) => {
+    var province = req.params.province;
+    var year = req.params.year;
+    var i = 0;
+    var updatedprovinceEmployments = [];
+    
+    provinceEmployments.find({}).toArray((error,provinceEmploymentsArray)=>{
+        for(i=0;i<provinceEmploymentsArray.length;i++)
+            if(provinceEmploymentsArray[i].province==province && provinceEmploymentsArray[i].year==year)
+                updatedprovinceEmployments.push(provinceEmploymentsArray[i]);
+                
+    if (updatedprovinceEmployments.length==0){
+        res.sendStatus(404);
+        
+    }else{
+        res.send(updatedprovinceEmployments);
+    }
+    
+    }); 
+});
+
+// PUT /province-employments/sevilla/2017
+
+app.put("/api/v1/province-employments/:province/:year", (req, res) => {
+    var province = req.params.province;
+    var year = req.params.year;
+    var updatedData = req.body;
+    var found = false;
+    var coincide = true;
+    var i = 0;
+    var updatedprovinceEmployments = [];
+    var aut = true;
+    
+    provinceEmployments.find({}).toArray((error,provinceEmploymentsArray)=>{
+            for(i=0;i<provinceEmploymentsArray.length;i++)
+                if (provinceEmploymentsArray[i].province==province && provinceEmploymentsArray[i].year==year){
+                    if (provinceEmploymentsArray[i].province==updatedData.province && provinceEmploymentsArray[i].year==updatedData.year){
+                        if(updatedData._id != null) {
+                            if(provinceEmploymentsArray[i]._id != updatedData._id)
+                                aut = false;
+                                found = true;
+                        } else {
+                        found = true;
+                        updatedprovinceEmployments.push(updatedData);
+                        }    
+                    }else{
+                        coincide = false;
+                    }
+                } else {
+                    updatedprovinceEmployments.push(provinceEmploymentsArray[i]);
+                }
+        
+     if (coincide==false){
+        res.sendStatus(400);
+    }else if (found==false){
+        res.sendStatus(404);
+    } else if (aut == false){
+        res.sendStatus(401);
+    }else{
+        provinceEmployments.remove();
+        updatedprovinceEmployments.filter((d) =>{
+                provinceEmployments.insert(d);
+            });
+            res.sendStatus(200);
+    }
+    });
+});
+
+app.put("/api/v1/province-employments", (req, res) => {
+    res.sendStatus(405);
+});
+
+
+// DELETE /province-employments/sevilla/2017
+
+app.delete("/api/v1/province-employments/:province/:year", (req,res)=>{
+    var province = req.params.province;
+    var year = req.params.year;
+    var found = false;
+    var updatedprovinceEmployments = [];
+    var i = 0;
+    
+    provinceEmployments.find({}).toArray((error,provinceEmploymentsArray)=>{
+        for(i=0;i<provinceEmploymentsArray.length;i++)
+           
+           if (provinceEmploymentsArray[i].province==province&&provinceEmploymentsArray[i].year==year)
+                found = true;
+                
+           else
+                updatedprovinceEmployments.push(provinceEmploymentsArray[i]);
+        
+        if (found==false)
+            res.sendStatus(404);
+        else
+            provinceEmployments.remove();
+            updatedprovinceEmployments.filter((d) =>{
+                provinceEmployments.insert(d);
+            });
+            res.sendStatus(200);
     });
 });
