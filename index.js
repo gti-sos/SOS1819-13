@@ -170,9 +170,9 @@ app.put("/api/v1/gas-increases/:year/:province", (req, res) => {
                 if (gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province){
                     if (gasIncreasesArray[i].year==updatedData.year && gasIncreasesArray[i].province==updatedData.province){
                         found = true;
+                        updatedgasIncreases.push(updatedData);
                     }else{
                         coincide = false;
-                    updatedgasIncreases.push(updatedData);
                     }
                 } else {
                     updatedgasIncreases.push(gasIncreasesArray[i]);
