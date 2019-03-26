@@ -69,6 +69,40 @@ var newGasIncreases = [{
     }];
 
 
+// API DIEGO
+var newGasStations = [{
+    "year": "2017",
+    "province": "sevilla",
+    "gasoleoAstations": "425",
+    "gasoleoAplusstations": "255",
+    "gasoleo98stations": "186"
+}, {
+    "year": "2017",
+    "province": "cadiz",
+    "gasoleoAstations": "243",
+    "gasoleoAplusstations": "165",
+    "gasoleo98stations": "141"
+}, {
+    "year": "2018",
+    "province": "sevilla",
+    "gasoleoAstations": "437",
+    "gasoleoAplusstations": "252",
+    "gasoleo98stations": "185"
+}, {
+    "year": "2018",
+    "province": "cadiz",
+    "gasoleoAstations": "258",
+    "gasoleoAplusstations": "167",
+    "gasoleo98stations": "142"
+}, {
+    "year": "2018",
+    "province": "madrid",
+    "gasoleoAstations": "710",
+    "gasoleoAplusstations": "586",
+    "gasoleo98stations": "510"
+}];
+
+
 //API RES IVAN
 
 // GET /api/v1/gas-increases/docs/
@@ -234,13 +268,13 @@ app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
 });
 
 //API RES DIEGO
-
+/*
 // GET /api/v1/gas-stations/docs/
 app.get("/api/v1/gas-stations/docs", (req,res)=>{
     res.redirect("https://documenter.getpostman.com/");
     // https://www.getpostman.com/
 });
-
+*/
 
 //LOAD INITIAL DATA de GET /gas-stations
 app.get("/api/v1/gas-stations/loadInitialData", (req,res)=>{
