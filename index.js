@@ -280,13 +280,11 @@ app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
 });
 
 //API RES DIEGO
-/*
 // GET /api/v1/gas-stations/docs/
 app.get("/api/v1/gas-stations/docs", (req,res)=>{
     res.redirect("https://documenter.getpostman.com/");
-    // https://www.getpostman.com/
 });
-*/
+
 
 //LOAD INITIAL DATA de GET /gas-stations
 app.get("/api/v1/gas-stations/loadInitialData", (req,res)=>{
@@ -321,31 +319,34 @@ var newGas = req.body;
 var coincide = false;
 var i = 0;
 
-    gasStations.find({}).toArray((error,gasStationsArray)=>{
-        for(i=0;i<gasStationsArray.length;i++)
-            if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasoleo98stations==newGas.gasoleo98stations && gasStationsArray[i].gasoleoAplusstations==newGas.gasoleoAplusstations && gasStationsArray[i].gasoleoAstations==newGas.gasoleoAstations)
-                coincide = true;
-    
-    
-    if(coincide == true) {
-        res.sendStatus(409);
-    }else{ 
-        gasStations.insert(newGas);
-        res.sendStatus(201);
-    } 
+    if (newGas.year == null || newGas.province == null ||newGas.gasoleoAstations == null ||newGas.gasoleo98stations == null ||newGas.gasoleoAplusstations == null){
+        res.sendStatus(400);
+    }else{
+        gasStations.find({}).toArray((error,gasStationsArray)=>{
+            for(i=0;i<gasStationsArray.length;i++)
+                if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasoleo98stations==newGas.gasoleo98stations && gasStationsArray[i].gasoleoAplusstations==newGas.gasoleoAplusstations && gasStationsArray[i].gasoleoAstations==newGas.gasoleoAstations)
+                    coincide = true;
+        
+        
+        if(coincide == true) {
+            res.sendStatus(409);
+        }else{ 
+            gasStations.insert(newGas);
+            res.sendStatus(201);
+        } 
+        });
+    }
     });
-});
-
-app.post("/api/v1/gas-stations/:year/:province", (req,res)=>{
-    res.sendStatus(405);
-});
-
+    
+    app.post("/api/v1/gas-stations/:year/:province", (req,res)=>{
+        res.sendStatus(405);
+    });
+    
 // DELETE /gas-stations
-app.delete("/api/v1/gas-stations", (req, res) => {
-    
-   gasStations.remove();
-   res.sendStatus(200);
-    
+ app.delete("/api/v1/gas-stations", (req, res) => {
+        
+       gasStations.remove();
+       res.sendStatus(200);
     
 });
 
@@ -383,13 +384,20 @@ app.put("/api/v1/gas-stations/:year/:province", (req, res) => {
     var coincide = true;
     var i = 0;
     var updatedgasStations = [];
+    var aut = true;
     
     gasStations.find({}).toArray((error,gasStationsArray)=>{
             for(i=0;i<gasStationsArray.length;i++)
                 if (gasStationsArray[i].year==year && gasStationsArray[i].province==province){
                     if (gasStationsArray[i].year==updatedData.year && gasStationsArray[i].province==updatedData.province){
+                        if(updatedData._id != null) {
+                            if(gasStationsArray[i]._id != updatedData._id)
+                                aut = false;
+                                found = true;
+                        } else {
                         found = true;
                         updatedgasStations.push(updatedData);
+                        }    
                     }else{
                         coincide = false;
                     }
@@ -401,6 +409,8 @@ app.put("/api/v1/gas-stations/:year/:province", (req, res) => {
         res.sendStatus(400);
     }else if (found==false){
         res.sendStatus(404);
+    } else if (aut == false){
+        res.sendStatus(401);
     }else{
         gasStations.remove();
         updatedgasStations.filter((d) =>{
@@ -416,7 +426,7 @@ app.put("/api/v1/gas-stations", (req, res) => {
 });
 
 
-// DELETE /gas-stations/2017/sevila
+// DELETE /gas-stations/2017/sevilla
 
 app.delete("/api/v1/gas-stations/:year/:province", (req,res)=>{
     var year = req.params.year;
