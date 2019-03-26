@@ -33,7 +33,7 @@ app.use("/", express.static(__dirname + "/public"));
 
 //API IVAN
 var newGasIncreases = [{
-        "_id": "5c97a609a885960017a3da13",
+        "_id": "1",
         "year": "2017",
         "province": "sevilla",
         "gasoleoAprice": "1.121",
@@ -41,7 +41,7 @@ var newGasIncreases = [{
         "gasnormalprice": "1.223"
     },
     {
-        "_id": "5c97a609a885960017a3da14",
+        "_id": "2",
         "year": "2017",
         "province": "cadiz",
         "gasoleoAprice": "1.218",
@@ -49,7 +49,7 @@ var newGasIncreases = [{
         "gasnormalprice": "1.270"
     },
     {
-        "_id": "5c97a609a885960017a3da15",
+        "_id": "3",
         "year": "2018",
         "province": "sevilla",
         "gasoleoAprice": "1.221",
@@ -57,7 +57,7 @@ var newGasIncreases = [{
         "gasnormalprice": "1.275"
     },
     {
-        "_id": "5c97a609a885960017a3da16",
+        "_id": "4",
         "year": "2018",
         "province": "cadiz",
         "gasoleoAprice": "1.220",
@@ -65,7 +65,7 @@ var newGasIncreases = [{
         "gasnormalprice": "1.240"
     },
     {
-        "_id": "5c97a609a885960017a3da17",
+        "_id": "5",
         "year": "2018",
         "province": "madrid",
         "gasoleoAprice": "1.201",
