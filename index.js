@@ -234,14 +234,27 @@ app.delete("/api/v1/gas-increases/:year/:province", (req,res)=>{
 });
 
 //API RES DIEGO
+
+// GET /api/v1/gas-stations/docs/
+app.get("/api/v1/gas-stations/docs", (req,res)=>{
+    res.redirect("https://documenter.getpostman.com/view/62723fe2c978d28c23fd");
+    // https://www.getpostman.com/collections/62723fe2c978d28c23fd
+});
+
+
 //LOAD INITIAL DATA de GET /gas-stations
 app.get("/api/v1/gas-stations/loadInitialData", (req,res)=>{
-    gasStations.remove();
-    newGasStations.filter((d) =>{
-        gasStations.insert(d);
+    gasStations.find({}).toArray((error,gasStationsArray)=>{
+        if(gasStationsArray.length!=0){
+            res.sendStatus(409);
+        } else {
+            gasStations.remove();
+            newGasStations.filter((d) =>{
+                gasStations.insert(d);
+            });
+            res.sendStatus(200);
+        }
     });
-        
-    res.sendStatus(200);
 });
 
 // GET /gas-stations
@@ -263,7 +276,7 @@ var coincide = false;
 var i = 0;
     gasStations.find({}).toArray((error,gasStationsArray)=>{
         for(i=0;i<gasStationsArray.length;i++)
-            if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasoleo98stations==newGas.gasoleo98stations && gasStationsArray[i].gasoleoAplusstations==newGas.gasoleoAplusstations && gasStationsArray[i].gasoleoAstations==newGas.gasoleoAstations)
+            if (gasStationsArray[i].year==newGas.year && gasStationsArray[i].province==newGas.province && gasStationsArray[i].gasnormalprice==newGas.gasnormalprice && gasStationsArray[i].gasoleoAplusprice==newGas.gasoleoAplusprice && gasStationsArray[i].gasoleoAprice==newGas.gasoleoAprice)
                 coincide = true;
     
     
@@ -327,11 +340,11 @@ app.put("/api/v1/gas-stations/:year/:province", (req, res) => {
     gasStations.find({}).toArray((error,gasStationsArray)=>{
             for(i=0;i<gasStationsArray.length;i++)
                 if (gasStationsArray[i].year==year && gasStationsArray[i].province==province){
-                    if (updatedData._id==gasStationsArray[i]._id){
+                    if (gasStationsArray[i].year==updatedData.year && gasStationsArray[i].province==updatedData.province){
                         found = true;
+                        updatedgasStations.push(updatedData);
                     }else{
                         coincide = false;
-                    updatedgasStations.push(updatedData);
                     }
                 } else {
                     updatedgasStations.push(gasStationsArray[i]);
@@ -383,6 +396,7 @@ app.delete("/api/v1/gas-stations/:year/:province", (req,res)=>{
             res.sendStatus(200);
     });
 });
+
 
 
 app.listen(port, () => {
