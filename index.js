@@ -606,7 +606,7 @@ app.get("/api/v1/province-employments/:province/:year", (req, res) => {
         res.sendStatus(404);
         
     }else{
-        res.send(updatedprovinceEmployments);
+        res.send(updatedprovinceEmployments[0]);
     }
     
     }); 
