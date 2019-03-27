@@ -512,7 +512,7 @@ var newProvinceEmployments = [{
 // GET /api/v1/province-employments/docs/
 
 app.get("/api/v1/province-employments/docs", (req,res)=>{
-    res.redirect("https://documenter.getpostman.com/");
+    res.redirect("https://documenter.getpostman.com/view/6911518/S17tS8bm");
 });
 
 
