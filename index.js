@@ -313,6 +313,99 @@ app.get("/api/v1/gas-stations", (req,res)=>{
    
 });
 
+// GET /gas-stations filtrado por año
+app.get("/api/v1/gas-stations-year", (req, res) => {
+    
+        //Busqueda por año
+        var year_search = parseInt(req.query.from);
+        //Paginación
+       //-------------- var limit = parseInt(req.query.limit);
+       //-------------- var offset = parseInt(req.query.offset);
+    
+        
+        //Paginación y Búsqueda
+        if(Number.isInteger(year_search)){
+        
+            gasStations.find({ "year": { $gte: year_search} }).toArray( (err, gasStationsArray) => {
+    	        
+        		if(err){
+        			
+        			res.sendStatus(500);
+        			
+        		}else{
+        			
+        			res.status(200).send(gasStations.map((c)=>{
+        			    delete c._id;
+        			    return c;
+        			    
+        			}));
+        	
+        		}
+    	    });
+    	   /*
+    	//Paginacón
+        }else if(Number.isInteger(limit) && Number.isInteger(offset) ){
+            
+            publicExpenditureEducations.find({}).skip(offset).limit(limit).toArray( (err, publicExpenditureEducation) => {
+    	        
+        		if(err){
+        			
+        			res.sendStatus(500);
+        			
+        		}else{
+        			
+        			res.status(200).send(publicExpenditureEducation.map((c)=>{
+        			    delete c._id;
+        			    return c;
+        			    
+        			}));
+        	
+        		}
+    	    });*//*
+        //Búsqueda 
+        }else if(Number.isInteger(startY) && Number.isInteger(endY)){
+            
+            publicExpenditureEducations.find({ "year": { $gte: startY, $lte: endY } }).toArray( (err, publicExpenditureEducation) => {
+    	        
+        		if(err){
+        			
+        			res.sendStatus(500);
+        			
+        		}else{
+        			
+        			res.status(200).send(publicExpenditureEducation.map((c)=>{
+        			    delete c._id;
+        			    return c;
+        			    
+        			}));
+        	
+        		}
+    	    });*/
+        }else{
+
+            gasStations.find({}).toArray( (err, gasStationsArray) => {
+    	        
+        		if(err){
+        			
+        			res.sendStatus(500);
+        			
+        		}else{
+        			
+        			res.status(200).send(gasStations.map((c)=>{
+        			    delete c._id;
+        			    return c;
+        			    
+        			}));
+        	
+        		}
+    	    });
+            
+        }
+
+    
+});
+    
+
 // POST /gas-stations
 app.post("/api/v1/gas-stations", (req, res) => {
 var newGas = req.body;
