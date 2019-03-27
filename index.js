@@ -194,7 +194,7 @@ app.get("/api/v1/gas-increases/:year/:province", (req, res) => {
         res.sendStatus(404);
         
     }else{
-        res.send(updatedgasIncreases);
+        res.send(updatedgasIncreases[0]);
     }
     
     }); 
@@ -370,7 +370,7 @@ app.get("/api/v1/gas-stations/:year/:province", (req, res) => {
         res.sendStatus(404);
         
     }else{
-        res.send(updatedgasStations);
+        res.send(updatedgasStations[0]);
     }
     
     }); 
