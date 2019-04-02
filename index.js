@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 gasAPI.gasIncreases(app, BASE_PATH);
 gasAPI.gasStations(app, BASE_PATH);
+gasAPI.provinceEmployments(app, BASE_PATH);
 
 app.use("/", express.static(__dirname + "/public"));
 

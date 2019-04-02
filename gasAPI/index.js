@@ -6,5 +6,8 @@ module.exports = {
     },
     gasStations : function(app, BASE_PATH){
         v1.gasStations(app, BASE_PATH+"/v1");
+    },
+    provinceEmployments : function(app, BASE_PATH){
+        v1.provinceEmployments(app, BASE_PATH+"/v1");
     }
 }
