@@ -75,8 +75,12 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-stations
     path = BASE_PATH + "/gas-stations";
     app.get(path, (req,res)=>{
-        
-        var year = req.query.year;
+        gasStations.find({}).toArray((error,gasStationsArray)=>{
+            if(error)
+                console.log("Error");
+            res.send(gasStationsArray);
+        });
+        /*var year = req.query.year;
         var province = req.query.province;
         
         var limit = req.query.limit;
@@ -134,7 +138,7 @@ module.exports = function(app, BASE_PATH){
     
     }else{
         
-        gasStations.find({}).toArray((err, gasStationsArray)=>{
+        gasStationsArray.find({}).toArray((err, gasStationsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
@@ -143,17 +147,11 @@ module.exports = function(app, BASE_PATH){
         
     }
 });
-/*
-        
-        gasStations.find({}).toArray((error,gasStationsArray)=>{
-            if(error)
-                console.log("Error");
-            res.send(gasStationsArray);
-        });
-        
+*/
+      
        
     });
- */   
+    
     // POST /gas-stations
     path = BASE_PATH + "/gas-stations";
     app.post(path, (req, res) => {
