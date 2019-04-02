@@ -89,7 +89,7 @@ module.exports = function(app, BASE_PATH){
         var gasoleo98stations = Number(req.query.gasoleo98stations);
         
          if (Number.isInteger(limit) && Number.isInteger(offset) && Number.isInteger(from) && Number.isInteger(to)) {
-            gasStations.find({ "year": { $gte: from, $lte: to } }).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+            gasStations.find({ year: { $gte: from, $lte: to } }).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if(error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d)=>{
@@ -98,7 +98,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });
          } else if (Number.isInteger((year))) {
-             gasStations.find({"year":year}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+             gasStations.find({year:year}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d) => {
@@ -116,7 +116,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });        
          } else if (Number.isInteger((gasoleoAstations))){
-             gasStations.find({"gasoleoAstations":gasoleoAstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+             gasStations.find({gasoleoAstations:gasoleoAstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d) => {
@@ -125,7 +125,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });
          } else if (Number.isInteger((gasoleoAplusstations))){
-             gasStations.find({"gasoleoAplusstations":gasoleoAplusstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+             gasStations.find({gasoleoAplusstations:gasoleoAplusstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d) => {
@@ -134,7 +134,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });
          } else if (Number.isInteger((gasoleo98stations))){
-             gasStations.find({"gasoleo98stations":gasoleo98stations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+             gasStations.find({gasoleo98stations:gasoleo98stations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d) => {
