@@ -83,10 +83,10 @@ module.exports = function(app, BASE_PATH){
         var offset = Number(req.query.offset);
     
         var province = req.query.province;
-        var year = Number(req.query.year);
-        var gasoleoAstations = Number(req.query.gasoleoAstations);
-        var gasoleoAplusstations = Number(req.query.gasoleoAplusstations);
-        var gasoleo98stations = Number(req.query.gasoleo98stations);
+        var year =req.query.year;
+        var gasoleoAstations =req.query.gasoleoAstations;
+        var gasoleoAplusstations = req.query.gasoleoAplusstations;
+        var gasoleo98stations = req.query.gasoleo98stations;
         
          if (Number.isInteger(limit) && Number.isInteger(offset) && Number.isInteger(from) && Number.isInteger(to)) {
             gasStations.find({ year: { $gte: from, $lte: to } }).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
