@@ -75,12 +75,12 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-stations
     path = BASE_PATH + "/gas-stations";
     app.get(path, (req,res)=>{
-       /* gasStations.find({}).toArray((error,gasStationsArray)=>{
+        gasStations.find({}).toArray((error,gasStationsArray)=>{
             if(error)
                 console.log("Error");
             res.send(gasStationsArray);
-        });*/
-        var year = req.query.year;
+        });
+        /*var year = req.query.year;
         var province = req.query.province;
         
         var gasoleoAstations = req.query.gasoleoAstations;
@@ -173,7 +173,7 @@ module.exports = function(app, BASE_PATH){
         });
         
     }
-};
+};*/
 
       
        
