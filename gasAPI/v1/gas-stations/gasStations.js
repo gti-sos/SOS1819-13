@@ -107,7 +107,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });
          } else if (province) {
-             gasStations.find({"province":year}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+             gasStations.find({province:province}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
              if (error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d) => {
