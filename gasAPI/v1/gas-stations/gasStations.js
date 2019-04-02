@@ -80,6 +80,7 @@ module.exports = function(app, BASE_PATH){
                 console.log("Error");
             res.send(gasStationsArray);
         });
+    }
         /*var year = req.query.year;
         var province = req.query.province;
         
@@ -175,8 +176,6 @@ module.exports = function(app, BASE_PATH){
     }
 };*/
 
-      
-       
     //});
     
     // POST /gas-stations
