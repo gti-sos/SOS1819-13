@@ -75,11 +75,87 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-stations
     path = BASE_PATH + "/gas-stations";
     app.get(path, (req,res)=>{
-        gasStations.find({}).toArray((error,gasStationsArray)=>{
+        
+        var from = parseInt(req.query.from);
+        var to = parseInt(req.query.to);
+        
+        var limit = Number(req.query.limit);
+        var offset = Number(req.query.offset);
+    
+        var province = req.query.province;
+        var year = Number(req.query.year);
+        var gasoleoAstations = Number(req.query.gasoleoAstations);
+        var gasoleoAplusstations = Number(req.query.gasoleoAplusstations);
+        var gasoleo98stations = Number(req.query.gasoleo98stations);
+        
+         if (Number.isInteger(limit) && Number.isInteger(offset) && Number.isInteger(from) && Number.isInteger(to)) {
+            gasStations.find({ "year": { $gte: from, $lte: to } }).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+                if(error)
+                    console.log("Error");
+                res.send(gasStationsArray.map((d)=>{
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (Number.isInteger((year))) {
+             gasStations.find({"year":year}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasStationsArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (province) {
+             gasStations.find({"province":year}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+             if (error)
+                    console.log("Error");
+                res.send(gasStationsArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });        
+         } else if (Number.isInteger((gasoleoAstations))){
+             gasStations.find({"gasoleoAstations":gasoleoAstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasStationsArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (Number.isInteger((gasoleoAplusstations))){
+             gasStations.find({"gasoleoAplusstations":gasoleoAplusstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasStationsArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (Number.isInteger((gasoleo98stations))){
+             gasStations.find({"gasoleo98stations":gasoleo98stations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasStationsArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else {
+              gasStations.find({}).skip(offset).limit(limit).toArray((error,gasStationsArray)=>{
             if(error)
                 console.log("Error");
-            res.send(gasStationsArray);
+            res.send(gasStationsArray.map((d)=>{
+                delete d._id;
+                return d;
+            }));
         });
+        }
+         
+    });
+         
+         
         /*var year = req.query.year;
         var province = req.query.province;
         
@@ -149,8 +225,7 @@ module.exports = function(app, BASE_PATH){
 });
 */
       
-       
-    });
+  
     
     // POST /gas-stations
     path = BASE_PATH + "/gas-stations";
