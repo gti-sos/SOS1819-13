@@ -83,7 +83,10 @@ module.exports = function(app, BASE_PATH){
         gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             if(error)
                 console.log("Error");
-            res.send(gasIncreasesArray);
+            res.send(gasIncreasesArray.map((d)=>{
+                delete d._id;
+                return d;
+            }));
         });
         
     /*var year = req.query.year;
@@ -217,7 +220,8 @@ module.exports = function(app, BASE_PATH){
             res.sendStatus(404);
             
         }else{
-            res.send(updatedgasIncreases[0]);
+            delete updatedgasIncreases[0]._id;
+            res.send( updatedgasIncreases[0]);
         }
         
         }); 
