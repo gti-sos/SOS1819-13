@@ -5,12 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-
-    "test": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853; newman run https://www.getpostman.com/collections/e476df27d04a1a04e1af;",
+    "test": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853; newman run https://www.getpostman.com/collections/e476df27d04a1a04e1af; newman run https://www.getpostman.com/collections/62193d74f6cf19a7e782", 
     "test-stations": "newman run https://www.getpostman.com/collections/e476df27d04a1a04e1af",
-    "test-gas-increases": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853";
+    "test-gas-increases": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853",
     "test-province-employments": "newman run https://www.getpostman.com/collections/62193d74f6cf19a7e782"
-
   },
   "repository": {
     "type": "git",

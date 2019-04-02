@@ -4,6 +4,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 var gasIncreases;
 
+
 client.connect(err => {
   gasIncreases = client.db("mangalper").collection("gasIncreases");
   console.log("Connected!");
@@ -79,7 +80,13 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-increases
     path = BASE_PATH + "/gas-increases";
     app.get(path, (req,res)=>{
-        var year = req.query.year;
+        gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+            if(error)
+                console.log("Error");
+            res.send(gasIncreasesArray);
+        });
+        
+    /*var year = req.query.year;
         var province = req.query.province;
         
         var limit = req.query.limit;
@@ -146,13 +153,7 @@ module.exports = function(app, BASE_PATH){
         
     }
 });
-        
-        /*gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
-            if(error)
-                console.log("Error");
-            res.send(gasIncreasesArray);
-        });
-        */
+*/
        
     
     // POST /gas-increases
