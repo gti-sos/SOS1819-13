@@ -134,7 +134,7 @@ module.exports = function(app, BASE_PATH){
     
     }else{
         
-        gasStationsArray.find({}).toArray((err, gasStationsArray)=>{
+        gasStations.find({}).toArray((err, gasStationsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
