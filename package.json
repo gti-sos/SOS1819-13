@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "newman run https://www.getpostman.com/collections/b19faf721a857be415a1",
+    "test": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853",
     "test-stations": "newman run https://www.getpostman.com/collections/e476df27d04a1a04e1af"
-    
+    "test-gas-increases": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853"
   },
   "repository": {
     "type": "git",
