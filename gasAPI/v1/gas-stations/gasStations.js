@@ -76,6 +76,75 @@ module.exports = function(app, BASE_PATH){
     path = BASE_PATH + "/gas-stations";
     app.get(path, (req,res)=>{
         
+        var year = req.query.year;
+        var province = req.query.province;
+        
+        var limit = req.query.limit;
+        var offset = req.query.offset;
+        var from = req.query.from;
+        
+        if(year || province){
+            if(!year) 
+            { 
+            
+                gasStations.find({"province":province}).toArray((err, gasStationsArray)=>{ 
+                    if(err)
+                        console.log("Error: "+err);
+                    
+                    res.send(gasStationsArray);
+            });
+    
+        }else if(!province){
+            
+            gasStations.find({"year":year}).toArray((err, gasStationsArray)=>{ 
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(gasStationsArray);
+            });
+        
+        }
+        else {
+            
+            gasStations.find({"year":year, "province":province}).toArray((err, gasStationsArray)=>{ 
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(gasStationsArray);
+            });
+        }
+        
+        }else if(limit){
+        
+        gasStations.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, gasStationsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(gasStationsArray);
+        });
+        
+    }else if(from){
+        
+        gasStations.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, gasStationsArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(gasStationsArray);
+            });
+    
+    }else{
+        
+        gasStationsArray.find({}).toArray((err, gasStationsArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(gasStationsArray);
+        });
+        
+    }
+});
+/*
+        
         gasStations.find({}).toArray((error,gasStationsArray)=>{
             if(error)
                 console.log("Error");
@@ -84,7 +153,7 @@ module.exports = function(app, BASE_PATH){
         
        
     });
-    
+ */   
     // POST /gas-stations
     path = BASE_PATH + "/gas-stations";
     app.post(path, (req, res) => {
