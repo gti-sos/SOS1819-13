@@ -79,15 +79,81 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-increases
     path = BASE_PATH + "/gas-increases";
     app.get(path, (req,res)=>{
+        var year = req.query.year;
+        var province = req.query.province;
         
-        gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        var limit = req.query.limit;
+        var offset = req.query.offset;
+        var from = req.query.from;
+        
+        if(year || province){
+            if(!year) 
+            { 
+            
+                gasIncreases.find({"province":province}).toArray((err, gasIncreasesArray)=>{ 
+                    if(err)
+                        console.log("Error: "+err);
+                    
+                    res.send(gasIncreasesArray);
+            });
+    
+        }else if(!province){
+            
+            gasIncreases.find({"year":year}).toArray((err, gasIncreasesArray)=>{ 
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(gasIncreasesArray);
+            });
+        
+        }
+        else {
+            
+            gasIncreases.find({"year":year, "province":province}).toArray((err, gasIncreasesArray)=>{ 
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(gasIncreasesArray);
+            });
+        }
+        
+        }else if(limit){
+        
+        gasIncreases.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, gasIncreasesArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(gasIncreasesArray);
+        });
+        
+    }else if(from){
+        
+        gasIncreases.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, gasIncreasesArray)=>{
+                if(err)
+                    console.log("Error: "+err);
+                
+                res.send(gasIncreasesArray);
+            });
+    
+    }else{
+        
+        gasIncreases.find({}).toArray((err, gasIncreasesArray)=>{
+            if(err)
+                console.log("Error: "+err);
+            
+            res.send(gasIncreasesArray);
+        });
+        
+    }
+});
+        
+        /*gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
             if(error)
                 console.log("Error");
             res.send(gasIncreasesArray);
         });
-        
+        */
        
-    });
     
     // POST /gas-increases
     path = BASE_PATH + "/gas-increases";
