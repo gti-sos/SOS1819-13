@@ -9,7 +9,7 @@ const BASE_PATH = "/api";
 app.use(bodyParser.json());
 
 gasAPI.gasIncreases(app, BASE_PATH);
-
+gasAPI.gasStations(app, BASE_PATH);
 app.use("/", express.static(__dirname + "/public"));
 
 var port = process.env.PORT || 8080;
