@@ -97,7 +97,7 @@ module.exports = function(app, BASE_PATH){
                     return d;
                 }));
             });
-         } else if (Number.isInteger((year))) {
+         } else if (year) {
              gasStations.find({year:year}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
@@ -115,7 +115,7 @@ module.exports = function(app, BASE_PATH){
                     return d;
                 }));
             });        
-         } else if (Number.isInteger((gasoleoAstations))){
+         } else if (gasoleoAstations){
              gasStations.find({gasoleoAstations:gasoleoAstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
@@ -124,7 +124,7 @@ module.exports = function(app, BASE_PATH){
                     return d;
                 }));
             });
-         } else if (Number.isInteger((gasoleoAplusstations))){
+         } else if (gasoleoAplusstations){
              gasStations.find({gasoleoAplusstations:gasoleoAplusstations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
@@ -133,7 +133,7 @@ module.exports = function(app, BASE_PATH){
                     return d;
                 }));
             });
-         } else if (Number.isInteger((gasoleo98stations))){
+         } else if (gasoleo98stations){
              gasStations.find({gasoleo98stations:gasoleo98stations}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if (error)
                     console.log("Error");
