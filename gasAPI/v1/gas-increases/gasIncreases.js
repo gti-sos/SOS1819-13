@@ -221,7 +221,7 @@ module.exports = function(app, BASE_PATH){
         }); 
     });
     
-    // PUT /gas-increases/2017
+    // PUT /gas-increases/2017/sevilla
     path = BASE_PATH + "/gas-increases/:year/:province";
     app.put(path, (req, res) => {
         var year = req.params.year;
