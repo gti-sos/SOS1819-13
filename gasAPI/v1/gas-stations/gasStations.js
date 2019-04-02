@@ -75,23 +75,36 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-stations
     path = BASE_PATH + "/gas-stations";
     app.get(path, (req,res)=>{
-        gasStations.find({}).toArray((error,gasStationsArray)=>{
+       /* gasStations.find({}).toArray((error,gasStationsArray)=>{
             if(error)
                 console.log("Error");
             res.send(gasStationsArray);
-        });
-        /*var year = req.query.year;
+        });*/
+        var year = req.query.year;
         var province = req.query.province;
+        
+        var gasoleoAstations = req.query.gasoleoAstations;
+        var gasoleoAplusstations = req.query.gasoleoAplusstations;
+        var gasoleo98stations = req.query.gasoleo98stations;
         
         var limit = req.query.limit;
         var offset = req.query.offset;
+        
         var from = req.query.from;
+        var to = req.query.to;
+        
+        if(gasoleoAstations){
+            gasStations.find({"gasoleoAstations":parseFloat(gasoleoAstations, 10)},{fields:{_id: 0}}).toArray((error, gasStationsArray) => {
+                if(error)
+                    console.log("Error");
+                res.send(gasStationsArray);
+        });
         
         if(year || province){
             if(!year) 
             { 
             
-                gasStations.find({"province":province}).toArray((err, gasStationsArray)=>{ 
+                gasStations.find({"province":province}).limit(parseInt(limit)).skip(parseInt(offset)).toArray((err, gasStationsArray)=>{ 
                     if(err)
                         console.log("Error: "+err);
                     
@@ -100,7 +113,7 @@ module.exports = function(app, BASE_PATH){
     
         }else if(!province){
             
-            gasStations.find({"year":year}).toArray((err, gasStationsArray)=>{ 
+            gasStations.find({"year":year}).limit(parseInt(limit)).skip(parseInt(offset)).toArray((err, gasStationsArray)=>{ 
                 if(err)
                     console.log("Error: "+err);
                 
@@ -110,7 +123,7 @@ module.exports = function(app, BASE_PATH){
         }
         else {
             
-            gasStations.find({"year":year, "province":province}).toArray((err, gasStationsArray)=>{ 
+            gasStations.find({"year":year, "province":province}).limit(parseInt(limit)).skip(parseInt(offset)).toArray((err, gasStationsArray)=>{ 
                 if(err)
                     console.log("Error: "+err);
                 
@@ -120,25 +133,39 @@ module.exports = function(app, BASE_PATH){
         
         }else if(limit){
         
-        gasStations.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, gasStationsArray)=>{
+        gasStations.find().limit(parseInt(limit)).skip(parseInt(offset)).toArray((err, gasStationsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
             res.send(gasStationsArray);
         });
         
-    }else if(from){
-        
-        gasStations.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, gasStationsArray)=>{
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasStationsArray);
-            });
-    
+    }else if(from || to) //from to
+    {
+        if (from && to)
+        {
+            gasStations.find({ "year" : { $gte : from, $lte : to }}).toArray((err, gasStationsArray)=>{
+                    if(err) console.log("Error: "+err);
+                    res.send(gasStationsArray);
+                });
+        }
+        else if (from)
+        {
+            gasStations.find({ "year" : { $gte : from }}).toArray((err, gasStationsArray)=>{
+                    if(err) console.log("Error: "+err);
+                    res.send(gasStationsArray);
+                });
+        }
+        else
+        {
+            gasStations.find({ "year" : { $lte : to }}).toArray((err, gasStationsArray)=>{
+                    if(err) console.log("Error: "+err);
+                    res.send(gasStationsArray);
+                });
+        }
     }else{
         
-        gasStationsArray.find({}).toArray((err, gasStationsArray)=>{
+        gasStations.find({}).toArray((err, gasStationsArray)=>{
             if(err)
                 console.log("Error: "+err);
             
@@ -147,10 +174,10 @@ module.exports = function(app, BASE_PATH){
         
     }
 });
-*/
+
       
        
-    });
+    //});
     
     // POST /gas-stations
     path = BASE_PATH + "/gas-stations";
