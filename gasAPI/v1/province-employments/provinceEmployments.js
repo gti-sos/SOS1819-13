@@ -55,7 +55,9 @@ module.exports = function(app, BASE_PATH){
     
     path = BASE_PATH + "/province-employments/docs";
     app.get(path, (req,res)=>{
-        res.redirect("https://documenter.getpostman.com/view/6911518/S17tS8bm");
+        res.redirect("https://documenter.getpostman.com/view/6911518/S1EH21Zi");
+    
+    // docs F04: https://documenter.getpostman.com/view/6911518/S17tS8bm
     });
 
 
