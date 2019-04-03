@@ -89,7 +89,7 @@ module.exports = function(app, BASE_PATH){
     
         var province = req.query.province;
         var year =req.query.year;
-        var gasoleoAprice =parseFloat(req.query.gasoleoAprice);
+        var gasoleoAprice =Number(req.query.gasoleoAprice);
         var gasoleoAplusprice = req.query.gasoleoAplusprice;
         var gasnormalprice = req.query.gasnormalprice;
         
@@ -121,7 +121,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });        
          } else if (gasoleoAprice){
-             gasIncreases.find({gasoleoAstations:gasoleoAprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+             gasIncreases.find({gasoleoAstations: Number.isFloat(gasoleoAprice)}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasIncreasesArray.map((d) => {
