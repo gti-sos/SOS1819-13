@@ -154,77 +154,8 @@ module.exports = function(app, BASE_PATH){
         }
          
     });
-         
-         
-        /*var year = req.query.year;
-        var province = req.query.province;
-        
-        var limit = req.query.limit;
-        var offset = req.query.offset;
-        var from = req.query.from;
-        
-        if(year || province){
-            if(!year) 
-            { 
-            
-                gasStations.find({"province":province}).toArray((err, gasStationsArray)=>{ 
-                    if(err)
-                        console.log("Error: "+err);
-                    
-                    res.send(gasStationsArray);
-            });
-    
-        }else if(!province){
-            
-            gasStations.find({"year":year}).toArray((err, gasStationsArray)=>{ 
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasStationsArray);
-            });
-        
-        }
-        else {
-            
-            gasStations.find({"year":year, "province":province}).toArray((err, gasStationsArray)=>{ 
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasStationsArray);
-            });
-        }
-        
-        }else if(limit){
-        
-        gasStations.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, gasStationsArray)=>{
-            if(err)
-                console.log("Error: "+err);
-            
-            res.send(gasStationsArray);
-        });
-        
-    }else if(from){
-        
-        gasStations.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, gasStationsArray)=>{
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasStationsArray);
-            });
-    
-    }else{
-        
-        gasStationsArray.find({}).toArray((err, gasStationsArray)=>{
-            if(err)
-                console.log("Error: "+err);
-            
-            res.send(gasStationsArray);
-        });
-        
-    }
-});
-*/
       
+   
   
     
     // POST /gas-stations
@@ -287,6 +218,7 @@ module.exports = function(app, BASE_PATH){
             res.sendStatus(404);
             
         }else{
+            delete updatedgasStations[0]._id;
             res.send(updatedgasStations[0]);
         }
         
