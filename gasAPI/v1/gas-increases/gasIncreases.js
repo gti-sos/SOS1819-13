@@ -78,7 +78,7 @@ module.exports = function(app, BASE_PATH){
     });
     
     // GET /gas-increases
-    path = BASE_PATH + "/gas-increases";
+    path = BASE_PATH + "/gas-increases"; 
     app.get(path, (req,res)=>{
         
         var from = parseInt(req.query.from);
