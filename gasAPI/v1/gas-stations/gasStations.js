@@ -203,11 +203,12 @@ module.exports = function(app, BASE_PATH){
     app.get(path, (req, res) => {
         var year = req.params.year;
         var province = req.params.province;
+        
         var i = 0;
         var updatedgasStations = [];
         
         
-        gasStations.find({}).toArray((error,gasStationsArray)=>{
+        gasStations.find({year:year,province:province}).toArray((error,gasStationsArray)=>{
             for(i=0;i<gasStationsArray.length;i++)
                 if(gasStationsArray[i].year==year && gasStationsArray[i].province==province)
                     updatedgasStations.push(gasStationsArray[i]);
