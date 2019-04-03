@@ -178,7 +178,7 @@ module.exports = function(app, BASE_PATH){
         if (updatedgasIncreases.length==0){
             res.sendStatus(404);
         
-        }else{ 
+        }else{  
             res.send(updatedgasIncreases.map((d)=>{
                 delete d._id;
                 return d;
