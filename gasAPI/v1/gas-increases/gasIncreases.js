@@ -80,7 +80,75 @@ module.exports = function(app, BASE_PATH){
     // GET /gas-increases
     path = BASE_PATH + "/gas-increases";
     app.get(path, (req,res)=>{
-        gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        
+        var from = parseInt(req.query.from);
+        var to = parseInt(req.query.to);
+        
+        var limit = Number(req.query.limit);
+        var offset = Number(req.query.offset);
+    
+        var province = req.query.province;
+        var year =req.query.year;
+        var gasoleoAprice =req.query.gasoleoAprice;
+        var gasoleoAplusprice = req.query.gasoleoAplusprice;
+        var gasnormalprice = req.query.gasnormalprice;
+        
+        if (Number.isInteger(limit) && Number.isInteger(offset) && Number.isInteger(from) && Number.isInteger(to)) {
+            gasIncreases.find({ year: { $gte: from, $lte: to } }).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+                if(error)
+                    console.log("Error");
+                res.send(gasIncreasesArray.map((d)=>{
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (year) {
+             gasIncreases.find({year:year}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasIncreasesArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (province) {
+             gasIncreases.find({province:province}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+             if (error)
+                    console.log("Error");
+                res.send(gasIncreasesArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });        
+         } else if (gasoleoAprice){
+             gasIncreases.find({gasoleoAstations:gasoleoAprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasIncreasesArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (gasoleoAplusprice){
+             gasIncreases.find({gasoleoAplusstations:gasoleoAplusprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasIncreasesArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else if (gasnormalprice){
+             gasIncreases.find({gasoleo98stations:gasnormalprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+                if (error)
+                    console.log("Error");
+                res.send(gasIncreasesArray.map((d) => {
+                    delete d._id;
+                    return d;
+                }));
+            });
+         } else {
+              gasIncreases.find({}).skip(offset).limit(limit).toArray((error,gasIncreasesArray)=>{
             if(error)
                 console.log("Error");
             res.send(gasIncreasesArray.map((d)=>{
@@ -88,75 +156,9 @@ module.exports = function(app, BASE_PATH){
                 return d;
             }));
         });
-        
-    /*var year = req.query.year;
-        var province = req.query.province;
-        
-        var limit = req.query.limit;
-        var offset = req.query.offset;
-        var from = req.query.from;
-        
-        if(year || province){
-            if(!year) 
-            { 
-            
-                gasIncreases.find({"province":province}).toArray((err, gasIncreasesArray)=>{ 
-                    if(err)
-                        console.log("Error: "+err);
-                    
-                    res.send(gasIncreasesArray);
-            });
-    
-        }else if(!province){
-            
-            gasIncreases.find({"year":year}).toArray((err, gasIncreasesArray)=>{ 
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasIncreasesArray);
-            });
-        
         }
-        else {
-            
-            gasIncreases.find({"year":year, "province":province}).toArray((err, gasIncreasesArray)=>{ 
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasIncreasesArray);
-            });
-        }
-        
-        }else if(limit){
-        
-        gasIncreases.find().limit(parseInt(limit,10)).skip(parseInt(offset,10)).toArray((err, gasIncreasesArray)=>{
-            if(err)
-                console.log("Error: "+err);
-            
-            res.send(gasIncreasesArray);
-        });
-        
-    }else if(from){
-        
-        gasIncreases.find({ "year" : { $gte : from, $lte : req.query.to }}).toArray((err, gasIncreasesArray)=>{
-                if(err)
-                    console.log("Error: "+err);
-                
-                res.send(gasIncreasesArray);
-            });
-    
-    }else{
-        
-        gasIncreases.find({}).toArray((err, gasIncreasesArray)=>{
-            if(err)
-                console.log("Error: "+err);
-            
-            res.send(gasIncreasesArray);
-        });
-        
-    }
-    */
-});
+         
+    });
 
        
     
@@ -209,7 +211,7 @@ module.exports = function(app, BASE_PATH){
         var updatedgasIncreases = [];
         
         
-        gasIncreases.find({}).toArray((error,gasIncreasesArray)=>{
+        gasIncreases.find({year:year,province:province}).toArray((error,gasIncreasesArray)=>{
             for(i=0;i<gasIncreasesArray.length;i++)
                 if(gasIncreasesArray[i].year==year && gasIncreasesArray[i].province==province)
                     updatedgasIncreases.push(gasIncreasesArray[i]);
