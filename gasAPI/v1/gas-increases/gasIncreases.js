@@ -89,7 +89,7 @@ module.exports = function(app, BASE_PATH){
     
         var province = req.query.province;
         var year =req.query.year;
-        var gasoleoAprice =Number(req.query.gasoleoAprice);
+        var gasoleoAprice =req.query.gasoleoAprice;
         var gasoleoAplusprice = req.query.gasoleoAplusprice;
         var gasnormalprice = req.query.gasnormalprice;
         
@@ -121,7 +121,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });        
          } else if (gasoleoAprice){
-             gasIncreases.find({gasoleoAstations: Number.isFloat(gasoleoAprice)}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+             gasIncreases.find({gasoleoAprice: gasoleoAprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasIncreasesArray.map((d) => {
@@ -130,7 +130,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });
          } else if (gasoleoAplusprice){
-             gasIncreases.find({gasoleoAplusstations:gasoleoAplusprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+             gasIncreases.find({gasoleoAplusprice:gasoleoAplusprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasIncreasesArray.map((d) => {
@@ -139,7 +139,7 @@ module.exports = function(app, BASE_PATH){
                 }));
             });
          } else if (gasnormalprice){
-             gasIncreases.find({gasoleo98stations:gasnormalprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
+             gasIncreases.find({gasnormalprice:gasnormalprice}).skip(offset).limit(limit).toArray((error, gasIncreasesArray) => {
                 if (error)
                     console.log("Error");
                 res.send(gasIncreasesArray.map((d) => {
