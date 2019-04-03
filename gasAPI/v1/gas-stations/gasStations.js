@@ -242,10 +242,10 @@ module.exports = function(app, BASE_PATH){
         var aut = true;
         
         gasStations.find({}).toArray((error,gasStationsArray)=>{
-                for(i=0;i<gasStationsArray.length;i++)
-                    if(gasStationsArray.length!=5){
+            if(gasStationsArray.length!=5){
                         coincide = false;
-                    }
+                    }    
+                for(i=0;i<gasStationsArray.length;i++)
                     if (gasStationsArray[i].year==year && gasStationsArray[i].province==province && gasStationsArray[i].gasoleoAstations==gasoleoAstations  && gasStationsArray[i].gasoleoAplusstations==gasoleoAplusstations && gasStationsArray[i].gasoleo98stations==gasoleo98stations ){
                         if (gasStationsArray[i].year==updatedData.year && gasStationsArray[i].province==updatedData.province&& gasStationsArray[i].gasoleoAstations==updatedData.gasoleoAstations  && gasStationsArray[i].gasoleoAplusstations==updatedData.gasoleoAplusstations && gasStationsArray[i].gasoleo98stations==updatedData.gasoleo98stations){
                             if(updatedData._id != null) {
