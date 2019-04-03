@@ -89,7 +89,7 @@ module.exports = function(app, BASE_PATH){
     
         var province = req.query.province;
         var year =req.query.year;
-        var gasoleoAprice =req.query.gasoleoAprice;
+        var gasoleoAprice =parseFloat(req.query.gasoleoAprice);
         var gasoleoAplusprice = req.query.gasoleoAplusprice;
         var gasnormalprice = req.query.gasnormalprice;
         
