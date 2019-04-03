@@ -159,7 +159,63 @@ module.exports = function(app, BASE_PATH){
         }
          
     });
+    
+    // GET /gas-increases/2017
+    path = BASE_PATH + "/gas-increases/:year";
+    app.get(path, (req, res) => {
+        var year = req.params.year;
+        var i = 0;
+        var updatedgasIncreases = [];
+        
+        
+        gasIncreases.find({year:year}).toArray((error,gasIncreasesArray)=>{
+            for(i=0;i<gasIncreasesArray.length;i++)
+                if(gasIncreasesArray[i].year==year)
+                    updatedgasIncreases.push(gasIncreasesArray[i]);
+                    
+        
+        
+        if (updatedgasIncreases.length==0){
+            res.sendStatus(404);
+            
+        }else{ 
+            res.send(updatedgasIncreases.map((d)=>{
+                delete d._id;
+                return d;
+            }));
+        }
+        
+        }); 
+    });
 
+    // GET /gas-increases/sevilla
+    path = BASE_PATH + "/gas-increases/:province";
+    app.get(path, (req, res) => {
+        var province = req.params.province;
+        var i = 0;
+        var updatedgasIncreases = [];
+        
+        
+        gasIncreases.find({province:province}).toArray((error,gasIncreasesArray)=>{
+            for(i=0;i<gasIncreasesArray.length;i++)
+                if(gasIncreasesArray[i].province==province)
+                    updatedgasIncreases.push(gasIncreasesArray[i]);
+                    
+        
+        
+        if (updatedgasIncreases.length==0){
+            res.sendStatus(404);
+            
+        }else{
+            
+            res.send( updatedgasIncreases.map((d) => {
+                delete d._id;
+                return d;
+            }));
+        }
+        
+        }); 
+    });
        
     
     // POST /gas-increases
