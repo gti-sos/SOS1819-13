@@ -8,8 +8,8 @@ module.exports = {
     },
     gasStations : function(app, BASE_PATH){
         gasStations(app, BASE_PATH);
-    },
+    }/*,
     provinceEmployments : function(app, BASE_PATH){
         provinceEmployments(app, BASE_PATH);
-    }
+    }*/
 }
