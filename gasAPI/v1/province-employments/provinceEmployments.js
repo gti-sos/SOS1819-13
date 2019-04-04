@@ -78,7 +78,7 @@ module.exports = function(app, BASE_PATH){
                 res.sendStatus(200);
             }
         });
-    });
+    }); 
     
     
     // GET /province-employments
