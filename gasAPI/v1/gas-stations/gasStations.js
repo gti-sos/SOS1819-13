@@ -232,9 +232,6 @@ module.exports = function(app, BASE_PATH){
         var year = req.params.year;
         var province = req.params.province;
         var updatedData = req.body;
-        var gasoleoAstations =req.query.gasoleoAstations;
-        var gasoleoAplusstations = req.query.gasoleoAplusstations;
-        var gasoleo98stations = req.query.gasoleo98stations;
         var found = false;
         var coincide = true;
         var i = 0;
@@ -243,8 +240,8 @@ module.exports = function(app, BASE_PATH){
         
         gasStations.find({}).toArray((error,gasStationsArray)=>{
                 for(i=0;i<gasStationsArray.length;i++)
-                    if (gasStationsArray[i].year==year && gasStationsArray[i].province==province && gasStationsArray[i].gasoleoAstations==gasoleoAstations  && gasStationsArray[i].gasoleoAplusstations==gasoleoAplusstations && gasStationsArray[i].gasoleo98stations==gasoleo98stations ){
-                        if (gasStationsArray[i].year==updatedData.year && gasStationsArray[i].province==updatedData.province&& gasStationsArray[i].gasoleoAstations==updatedData.gasoleoAstations  && gasStationsArray[i].gasoleoAplusstations==updatedData.gasoleoAplusstations && gasStationsArray[i].gasoleo98stations==updatedData.gasoleo98stations){
+                    if (gasStationsArray[i].year==year && gasStationsArray[i].province==province){
+                        if (gasStationsArray[i].year==updatedData.year && gasStationsArray[i].province==updatedData.province){
                             if(updatedData._id != null) {
                                 if(gasStationsArray[i]._id != updatedData._id)
                                     aut = false;
