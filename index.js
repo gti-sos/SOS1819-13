@@ -9,7 +9,6 @@ const BASE_PATH = "/api";
 app.use(bodyParser.json());
 
 gasAPI.gasIncreases(app, BASE_PATH);
-gasAPI.gasStations(app, BASE_PATH);
 /*gasAPI.provinceEmployments(app, BASE_PATH);*/
 
 app.use("/", express.static(__dirname + "/public"));
@@ -20,6 +19,20 @@ var port = process.env.PORT || 8080;
 app.listen(port, () => {
         console.log("Server ready on port " +port);
     });
+
+const MongoClientDRP = require("mongodb").MongoClient;
+const uriDRP = "mongodb+srv://test:test@sos1819-drp-rwvk5.mongodb.net/test?retryWrites=true";
+const client = new MongoClientDRP(uriDRP, { useNewUrlParser: true });
+
+var gasStations;
+
+client.connect(err => {
+  gasStations = client.db("sos1819-drp").collection("gasStations");
+  console.log("Connected!");
+  // perform actions on the collection object
+    gasAPI.gasStations(app, BASE_PATH);
+    app.use("/api/v1/gas-stations-minipostman", express.static(BASE_PATH.join(__dirname,"public/gas-stations")));
+});
 
 /*
 const MongoClient = require("mongodb").MongoClient;
