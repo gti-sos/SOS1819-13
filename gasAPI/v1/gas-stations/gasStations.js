@@ -9,8 +9,7 @@ client.connect(err => {
   console.log("Connected!");
   // perform actions on the collection object
   //gas-stations(app,gasStations);
-  // accès au frontend
-  //app.use("/api/v1/climate-stats-minipostman", express.static(path.join(__dirname,"public/climate-stats")));
+  //app.use("/api/v1/gas-stations-minipostman", express.static(path.join(__dirname,"public/gas-stations")));
 });
 
 module.exports = function(app, BASE_PATH){

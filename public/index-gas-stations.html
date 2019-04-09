@@ -1,0 +1,52 @@
+    
+<!DOCTYPE html>
+<html ng-app="MiniPostmanApp">
+
+<head>
+    <title>Gas Stations Mini Postman </title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+
+    <script src="minipostman-gas-stations.js"></script>
+    <script src="main-ctrl-gas-stations.js"></script>
+
+
+</head>
+
+<body ng-controller="MainCtrl">
+    <h1>Gas Stations</h1>
+    <div>
+        <label>URL:<input class="form-control text-center" ng-model="url"/></label>
+        <button class="btn btn-primary" ng-click="send()">Send</button>
+    </div>
+    <div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" ng-click="sendGet()">GET</button>
+            <button type="button" class="btn btn-secondary" ng-click="sendPost(province,year,victims,injurednothospitalizedinaccidents,accidentswithvictims)">POST</button>
+            <button type="button" class="btn btn-primary" ng-click="sendPut(province,year,victims,injurednothospitalizedinaccidents,accidentswithvictims)">PUT</button>
+            <button type="button" class="btn btn-secondary" ng-click="sendDelete()">DELETE</button>
+        </div>
+        <!--<label><input class="form-control text-center" ng-model="url" size="50"/></label>-->
+    </div>
+    <div>
+        <div class="col-xs-5" style="width: 50%;float:left;">
+            <label>year:<input class="form-control text-center" ng-model="year"/></label>
+            <label>province:<input class="form-control text-center" ng-model="province"/></label>
+            <label>gasoleoAstations:<input class="form-control text-center" ng-model="gasoleoAstations"/></label>
+            <label>gasoleoAplusstations:<input class="form-control text-center" ng-model="gasoleoAplusstations"/></label>
+            <label>gasoleo98stations:<input class="form-control text-center" ng-model="gasoleo98stations"/></label>
+        </div>
+        <div class="col-xs-5" style="width: 40%;float:left;">
+            <label class="input-lg" for="stateCode">State Code</label>
+            <textarea class="form-control" rows="1" ng-model="stateCode"></textarea>
+        </div>
+        <div class="col-xs-5" style="width: 40%;float:left;">
+            <label class="input-lg" for="dataResponse">Data response</label>
+            <textarea class="form-control" rows="13" ng-model="dataResponse"></textarea>
+        </div>
+
+    </div>
+</body>
+
+</html>
