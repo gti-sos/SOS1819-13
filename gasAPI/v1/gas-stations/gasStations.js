@@ -1,3 +1,18 @@
+const MongoClient = require("mongodb").MongoClient;
+const uri = "mongodb+srv://test:test@sos1819-drp-rwvk5.mongodb.net/test?retryWrites=true";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+
+var gasStations;
+
+client.connect(err => {
+  gasStations = client.db("sos1819-drp").collection("gasStations");
+  console.log("Connected!");
+  // perform actions on the collection object
+  //gas-stations(app,gasStations);
+  // accès au frontend
+  app.use("/api/v1/climate-stats-minipostman", express.static(path.join(__dirname,"public/climate-stats")));
+});
+
 module.exports = function(app, BASE_PATH){
     var path = "";
     var newGasStations = [{
