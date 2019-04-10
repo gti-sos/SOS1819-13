@@ -3,7 +3,7 @@
 var app = angular.module("MiniPostmanApp");
 app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
     console.log("MainCtrl initialized!");
-    $scope.url = "/api/v1/elements";
+    $scope.url = "/api/v1/gas-stations";
 
     $scope.sendGet = function(){
         $http.get($scope.url).then(function(response){
