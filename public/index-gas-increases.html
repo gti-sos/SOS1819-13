@@ -3,13 +3,13 @@
 <html ng-app="MiniPostmanApp">
 
 <head>
-    <title>Gas Stations Mini Postman </title>
+    <title>Gas Increases Mini Postman </title>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
 
-    <script src="minipostman-gas-stations.js"></script>
-    <script src="main-ctrl-gas-stations.js"></script>
+    <script src="minipostman-gas-increases.js"></script>
+    <script src="main-ctrl-gas-increases.js"></script>
 
 
 </head>
@@ -23,8 +23,8 @@
     <div>
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-primary" ng-click="sendGet()">GET</button>
-            <button type="button" class="btn btn-secondary" ng-click="sendPost(year,province,gasoleoAstations,gasoleoAplusstations,gasoleo98stations)">POST</button>
-            <button type="button" class="btn btn-primary" ng-click="sendPut(year,province,gasoleoAstations,gasoleoAplusstations,gasoleo98stations)">PUT</button>
+            <button type="button" class="btn btn-secondary" ng-click="sendPost(year,province, gasoleoAprice, gasoleoAplusprice, gasnormalprice)">POST</button>
+            <button type="button" class="btn btn-primary" ng-click="sendPut(year,province, gasoleoAprice, gasoleoAplusprice, gasnormalprice)">PUT</button>
             <button type="button" class="btn btn-secondary" ng-click="sendDelete()">DELETE</button>
         </div>
         <!--<label><input class="form-control text-center" ng-model="url" size="30"/></label>-->
@@ -34,9 +34,9 @@
         <div class="col-xs-5" style="width: 30%;float:left;">
             <li><label>year:<input class="form-control text-center" ng-model="year"/></label></li>
             <li><label>province:<input class="form-control text-center" ng-model="province"/></label></li>
-            <li><label>gasoleoAstations:<input class="form-control text-center" ng-model="gasoleoAstations"/></label></li>
-            <li><label>gasoleoAplusstations:<input class="form-control text-center" ng-model="gasoleoAplusstations"/></label></li>
-            <li><label>gasoleo98stations:<input class="form-control text-center" ng-model="gasoleo98stations"/></label></li>
+            <li><label>gasoleoAprice:<input class="form-control text-center" ng-model="gasoleoAprice"/></label></li>
+            <li><label>gasoleoAplusprice:<input class="form-control text-center" ng-model="gasoleoAplusprice"/></label></li>
+            <li><label>gasnormalprice:<input class="form-control text-center" ng-model="gasnormalprice"/></label></li>
         </div>
         <div class="col-xs-5" style="width: 30%;float:right;">
             <label class="input-lg" for="stateCode">State Code</label>

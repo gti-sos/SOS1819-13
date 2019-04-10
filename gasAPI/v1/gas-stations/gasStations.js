@@ -8,8 +8,6 @@ client.connect(err => {
   gasStations = client.db("sos1819-drp").collection("gasStations");
   console.log("Connected!");
   // perform actions on the collection object
-  //gas-stations(app,gasStations);
-  //app.use("/api/v1/gas-stations-minipostman", express.static(path.join(__dirname,"public/gas-stations")));
 });
 
 module.exports = function(app, BASE_PATH){
