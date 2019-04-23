@@ -8,9 +8,18 @@ const BASE_PATH = "/api";
 
 app.use(bodyParser.json());
 
+
+//v1
 gasAPI.gasIncreases(app, BASE_PATH);
 gasAPI.gasStations(app, BASE_PATH);
 /*gasAPI.provinceEmployments(app, BASE_PATH);*/
+
+
+
+//v2
+gasAPI.gasIncreasesv2(app, BASE_PATH);
+gasAPI.gasStationsv2(app, BASE_PATH);
+
 
 app.use("/", express.static(__dirname + "/public"));
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853; newman run https://www.getpostman.com/collections/d5698cdf07bc0f4d189c; newman run https://www.getpostman.com/collections/62193d74f6cf19a7e782", 
+    "test": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853; newman run https://www.getpostman.com/collections/d5698cdf07bc0f4d189c; newman run https://www.getpostman.com/collections/62193d74f6cf19a7e782",
     "test-stations": "newman run https://www.getpostman.com/collections/d5698cdf07bc0f4d189c",
     "test-gas-increases": "newman run https://www.getpostman.com/collections/a54e10f9a08a52e46853",
     "test-province-employments": "newman run https://www.getpostman.com/collections/62193d74f6cf19a7e782"
@@ -24,7 +24,9 @@
     "body-parser": "^1.18.3",
     "db": "^1.1.1",
     "express": "^4.16.4",
+    "jquery": "^3.4.0",
     "mongo": "^0.1.0",
-    "mongodb": "^3.2.2"
+    "mongodb": "^3.2.3",
+    "popper.js": "^1.15.0"
   }
 }
