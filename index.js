@@ -17,9 +17,9 @@ gasAPI.gasStations(app, BASE_PATH);
 
 
 //v2
-gasAPI.gasIncreasesv2(app, BASE_PATH);
+/*gasAPI.gasIncreasesv2(app, BASE_PATH);
 gasAPI.gasStationsv2(app, BASE_PATH);
-
+*/
 
 app.use("/", express.static(__dirname + "/public"));
 
