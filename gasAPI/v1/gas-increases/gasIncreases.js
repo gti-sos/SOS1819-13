@@ -5,11 +5,9 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 var gasIncreases;
 
 
-/*client.connect(err => {
+client.connect(err => {
   gasIncreases = client.db("mangalper").collection("gasIncreases");
-  console.log("Connected!");
-  // perform actions on the collection object
-});*/
+});
 
 module.exports = function(app, BASE_PATH){
     var path = "";

@@ -4,11 +4,9 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 var gasStations;
 
-/*client.connect(err => {
+client.connect(err => {
   gasStations = client.db("sos1819-drp").collection("gasStations");
-  console.log("Connected!");
-  // perform actions on the collection object
-});*/
+});
 
 module.exports = function(app, BASE_PATH){
     var path = "";
