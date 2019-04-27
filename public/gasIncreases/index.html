@@ -1,5 +1,4 @@
-    
-<!DOCTYPE html>
+
 <html ng-app="MiniPostmanApp">
 
 <head>
@@ -8,17 +7,16 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
 
-    <script src="minipostman-gas-increases.js"></script>
-    <script src="main-ctrl-gas-increases.js"></script>
+    <script src="minipostman.js"></script>
+    <script src="main-ctrl.js"></script>
 
 
 </head>
 
 <body ng-controller="MainCtrl">
-    <h1>Gas Stations</h1>
+    <h1>Gas Increases</h1>
     <div>
-        <label>URL:<input class="form-control text-center" ng-model="url"/></label>
-        <button class="btn btn-primary" ng-click="send()">Send</button>
+        <label>URL:<input class="form-control text-center" ng-model="url" size="40"/></label>
     </div>
     <div>
         <div class="btn-group" role="group" aria-label="Basic example">

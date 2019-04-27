@@ -7,6 +7,7 @@ var gasIncreases;
 
 client.connect(err => {
   gasIncreases = client.db("mangalper").collection("gasIncreases");
+  // perform actions on the collection object
 });
 
 module.exports = function(app, BASE_PATH){
@@ -70,7 +71,7 @@ module.exports = function(app, BASE_PATH){
                 newGasIncreases.filter((d) =>{
                     gasIncreases.insert(d);
                 });
-                res.sendStatus(200);
+                res.sendStatus(201);
             }
         });
     });
@@ -178,35 +179,6 @@ module.exports = function(app, BASE_PATH){
         
         }else{  
             res.send(updatedgasIncreases.map((d)=>{
-                delete d._id;
-                return d;
-            }));
-        }
-        
-        }); 
-    });
-
-    // GET /gas-increases/sevilla
-    path = BASE_PATH + "/gas-increases/:province";
-    app.get(path, (req, res) => {
-        var province = req.params.province;
-        var i = 0;
-        var updatedgasIncreases = [];
-        
-        
-        gasIncreases.find({province:province}).toArray((error,gasIncreasesArray)=>{
-            for(i=0;i<gasIncreasesArray.length;i++)
-                if(gasIncreasesArray[i].province==province)
-                    updatedgasIncreases.push(gasIncreasesArray[i]);
-                    
-        
-        
-        if (updatedgasIncreases.length==0){
-            res.sendStatus(404);
-            
-        }else{
-            
-            res.send( updatedgasIncreases.map((d) => {
                 delete d._id;
                 return d;
             }));

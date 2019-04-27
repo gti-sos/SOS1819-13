@@ -6,6 +6,7 @@ var gasStations;
 
 client.connect(err => {
   gasStations = client.db("sos1819-drp").collection("gasStations");
+  // perform actions on the collection object
 });
 
 module.exports = function(app, BASE_PATH){

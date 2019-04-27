@@ -9,6 +9,7 @@ const BASE_PATH = "/api";
 app.use(bodyParser.json());
 
 
+
 //v1
 gasAPI.gasIncreases(app, BASE_PATH);
 gasAPI.gasStations(app, BASE_PATH);
@@ -16,15 +17,9 @@ gasAPI.gasStations(app, BASE_PATH);
 
 
 
-//v2
-/*gasAPI.gasIncreasesv2(app, BASE_PATH);
-gasAPI.gasStationsv2(app, BASE_PATH);
-*/
-
 app.use("/", express.static(__dirname + "/public"));
 
 var port = process.env.PORT || 8080;
-
 
 const MongoClient = require("mongodb").MongoClient;
 const uri = "mongodb+srv://test:test@mangalper1-o8j8b.mongodb.net/mangalper1?retryWrites=true";
@@ -42,3 +37,4 @@ client.connect(err => {
             });
     });
 });
+
