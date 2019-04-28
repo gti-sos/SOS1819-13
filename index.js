@@ -1,6 +1,9 @@
 var express = require("express");
 var gasAPI = require("./gasAPI");
 var bodyParser = require("body-parser");
+var path = require("path");
+
+
 
 var app = express();
 
@@ -17,7 +20,9 @@ gasAPI.gasStations(app, BASE_PATH);
 
 
 
-app.use("/", express.static(__dirname + "/public"));
+app.use("/", express.static(path.join(__dirname,"/public")));
+app.use("/ui/v1/gas-increases", express.static(path.join(__dirname, "public/gas-increases")));
+app.use("/ui/v1/gas-stations", express.static(path.join(__dirname, "public/gas-stations")));
 
 var port = process.env.PORT || 8080;
 
