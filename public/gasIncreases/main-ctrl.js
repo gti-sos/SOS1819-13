@@ -9,10 +9,12 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
         $http.get($scope.url).then(function (response) {
             $scope.dataResponse = JSON.stringify(response.data, null, 2);
             $scope.stateCode = response.status + ", " +  response.statusText;
+            console.log("OK put method");
             
         }, function (response) {
             $scope.stateCode = response.status + ", " + response.statusText;
             $scope.dataResponse = "[]";
+             console.log("Error POST method: Code " + response.status + ", " + response.statusText);
         });
         
                 
@@ -47,7 +49,7 @@ $scope.sendPost = function (year, province, gasoleoAprice, gasoleoAplusprice, ga
 
         } else {
             $scope.dataResponse = "Fields required";
-        }
+        } 
     };
 
 
@@ -75,6 +77,7 @@ $scope.sendPost = function (year, province, gasoleoAprice, gasoleoAplusprice, ga
             }else{
             $scope.dataResponse="Fields required";
             $scope.stateCode = "";
+            console.log("Error PUT method: Code " + response.status + ", " + response.statusText);
         }
         }, function (response) {
             console.log("Error PUT method: Code " + response.status + ", " + response.statusText);
@@ -89,11 +92,13 @@ $scope.sendPost = function (year, province, gasoleoAprice, gasoleoAplusprice, ga
     
      $scope.sendDelete = function () {
         $http.delete($scope.url).then(function (response) {
-            console.log($scope.url);
+            console.log("OK put method");
             $scope.dataResponse = JSON.stringify(response.data, null, 2);
             $scope.stateCode = response.status + ", " + response.statusText;
         }, function (response) {
+            console.log("Error PUT method: Code " + response.status + ", " + response.statusText);
             $scope.stateCode = response.status + ", " + response.statusText;
+            $scope.dataResponse = "";
         });
     };
 }]);
