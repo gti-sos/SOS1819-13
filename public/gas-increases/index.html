@@ -1,0 +1,132 @@
+<html ng-app="MiniPostmanApp">
+
+<head>
+    <title>
+        Gas Increases MiniPostman 
+    </title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
+
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+
+    <script src="minipostman.js"></script>
+
+    <script src="main-ctrl.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+    <center>
+        <h2>Gas Increases</h2>
+    </center>
+    <div class="row" style="border: 2px solid black;">
+        <div class="col-sm">
+            <h6>Búsqueda por fechas:</h6>
+        </div>
+        <div class="row">
+
+            <div class="col-sm">
+                <input type="text" placeholder="Desde" class="form-control" ng-model="from" />
+            </div>
+            <div class="col-sm">
+                <input type="text" placeholder="Hasta" class="form-control" ng-model="to" />
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary" ng-click="buscarDesdeHasta(from, desde)">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="border: 2px solid black;">
+        <div class="col-sm">
+            <h6>Búsqueda por año:</h6>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" placeholder="Año" class="form-control" ng-model="year" />
+            </div>
+            <div class="col-sm">
+                <button class="btn btn-primary" ng-click="buscarRecurso(year)">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Año
+                </th>
+                <th>
+                    Provincia
+                </th>
+                <th>
+                    Precio Gasoleo A
+                </th>
+                <th>
+                    Precio Gasoleo A+
+                </th>
+                <th>
+                    Precio Gasolina
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="gasIncrease in gasIncreases">
+                <td>{{ gasIncrease.year }}</td>
+                <td>{{ gasIncrease.province }}</td>
+                <td>{{ gasIncrease.gasoleoAprice }}</td>
+                <td>{{ gasIncrease.gasoleoAplusprice }}</td>
+                <td>{{ gasIncrease.gasnormalprice }}</td>
+                <td>
+                    <button class="btn btn-warning" ng-click="deletegas(gasIncrease.year, gasIncrease.province)">Borrar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" placeholder="new year" value="new year" ng-model="newGasIncrease.year" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder="new province" value="new province" ng-model="newGasIncrease.province" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder="new gasoleoAprice" value="new gasoleoAprice" ng-model="newGasIncrease.gasoleoAprice" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder="new gasoleoAplusprice" value="new gasoleoAplusprice" ng-model="newGasIncrease.gasoleoAplusprice" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder="new gasnormalprice" value="new gasnormalprice" ng-model="newGasIncrease.gasnormalprice" />
+                </td>
+                <td>
+                    <button class="btn btn-primary" ng-click="addNewGas()">Añadir nuevo</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+
+        <div class="col-sm">
+            <button class="btn btn-primary" ng-click="cargaInicial()">Cargar Datos</button>
+        </div>
+        <div class="col-sm">
+            <button class="btn btn-danger" ng-click="deleteAllData()">Borrar Todo</button>
+        </div>
+    </div>
+    <div class="col-xs-5" style="width: 30%">
+            <label class="input-lg" for="mensaje">Mensaje</label>
+            <textarea class="form-control" rows="1" ng-model="mensaje">
+                <p> Mensaje : {{ mensaje }}</p>
+            </textarea>
+    </div>
+    <div class="col-xs-5" style="width: 30%">
+            <label class="input-lg" for="stateCode">Código de estado</label>
+            <textarea class="form-control" rows="1" ng-model="stateCode"></textarea>
+    </div>
+
+  
+</body>
+
+</html>
