@@ -96,7 +96,7 @@ module.exports = function(app, BASE_PATH){
                     return d;
                 }));
             });
-         } else if (from &&to) {
+         } else if (Number.isInteger(from) && Number.isInteger(to)) {
             gasStations.find({year:{$gte:from,$lte:to}}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if(error)
                     console.log("Error");
