@@ -87,8 +87,8 @@ module.exports = function(app, BASE_PATH){
         var gasoleoAplusstations = req.query.gasoleoAplusstations;
         var gasoleo98stations = req.query.gasoleo98stations;
         
-         if (Number.isInteger(limit) && Number.isInteger(offset)) {
-            gasStations.find({}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+         if (Number.isInteger(from) && Number.isInteger(to)) {
+            gasStations.find({year:{$gte:from,$lte:to}}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if(error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d)=>{
@@ -96,8 +96,8 @@ module.exports = function(app, BASE_PATH){
                     return d;
                 }));
             });
-         } else if (Number.isInteger(from) && Number.isInteger(to)) {
-            gasStations.find({year:{$gte:from,$lte:to}}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+         } else if (Number.isInteger(limit) && Number.isInteger(offset)) {
+            gasStations.find({}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if(error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d)=>{
