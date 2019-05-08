@@ -26,7 +26,7 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.stateCode = response.status + ", " + response.statusText;
             refresh();
         }, function(error) {
-            $scope.mensaje = "La base de datos obtiene datos, bórrelos todos para cargaros de nuevo";
+            $scope.mensaje = "La base de datos obtiene datos, bórrelos todos para cargarlos de nuevo";
             $scope.stateCode = error.status + ", " + error.statusText;
             refresh();
         });

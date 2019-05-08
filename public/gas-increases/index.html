@@ -77,8 +77,12 @@
                 <td>{{ gasIncrease.gasoleoAplusprice }}</td>
                 <td>{{ gasIncrease.gasnormalprice }}</td>
                 <td>
+                    <button class="btn btn-default" ng-click="updategas" data-toggle="modal" data-target="#myModal">Editar</button>
+                </td>
+                <td>
                     <button class="btn btn-warning" ng-click="deletegas(gasIncrease.year, gasIncrease.province)">Borrar</button>
                 </td>
+                
             </tr>
             <tr>
                 <td>
