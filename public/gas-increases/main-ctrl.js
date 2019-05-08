@@ -68,9 +68,18 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
            $scope.stateCode = response.status + ", " + response.statusText;
             refresh();
        }, function(error) {
-              $scope.mensaje = "Introduce correctamente el id del recurso";
-              $scope.stateCode = error.status + ", " + error.statusText;
-              refresh();
+           if(error.status == 404){
+                console.log("El recurso no se ha encontrado")
+                $scope.mensaje = "El recurso no se ha encontrado";
+                $scope.stateCode = error.status + ", " + error.statusText;
+                refresh();
+           } else {
+                console.log("Los datos no se han introducido bien");
+                $scope.mensaje = "El id del recurso no se ha introducido correctamente";
+                $scope.stateCode = error.status + ", " + error.statusText;
+                refresh();
+           }
+              
        });
     };
    
