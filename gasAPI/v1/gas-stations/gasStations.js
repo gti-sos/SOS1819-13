@@ -88,7 +88,7 @@ module.exports = function(app, BASE_PATH){
         var gasoleo98stations = req.query.gasoleo98stations;
         
          if (Number.isInteger(from) && Number.isInteger(to)) {
-            gasStations.find({year:{$gte:from,$lte:to}}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
+            gasStations.find({"year":{$gte:from,$lte:to}}).skip(offset).limit(limit).toArray((error, gasStationsArray) => {
                 if(error)
                     console.log("Error");
                 res.send(gasStationsArray.map((d)=>{
