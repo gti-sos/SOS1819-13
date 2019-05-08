@@ -75,11 +75,11 @@ module.exports = function(app, BASE_PATH){
     path = BASE_PATH + "/gas-stations";
     app.get(path, (req,res)=>{
         
-        var from = Number(req.query.from);
-        var to = Number(req.query.to);
+        var from = parseInt(req.query.from);
+        var to = parseInt(req.query.to);
         
-        var limit = Number(req.query.limit);
-        var offset = Number(req.query.offset);
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
     
         var province = req.query.province;
         var year =req.query.year;
