@@ -77,12 +77,8 @@
                 <td>{{ gasIncrease.gasoleoAplusprice }}</td>
                 <td>{{ gasIncrease.gasnormalprice }}</td>
                 <td>
-                    <button class="btn btn-default" ng-click="updategas" data-toggle="modal" data-target="#myModal">Editar</button>
-                </td>
-                <td>
                     <button class="btn btn-warning" ng-click="deletegas(gasIncrease.year, gasIncrease.province)">Borrar</button>
                 </td>
-                
             </tr>
             <tr>
                 <td>
@@ -108,6 +104,29 @@
                     <button class="btn btn-primary" ng-click="addNewGas()">Añadir nuevo</button>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" placeholder=" year" value=" year" ng-model="newGasUpdate.year" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder=" province" value=" province" ng-model="newGasUpdate.province" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder=" gasoleoAprice" value=" gasoleoAprice" ng-model="newGasUpdate.gasoleoAprice" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder=" gasoleoAplusprice" value=" gasoleoAplusprice" ng-model="newGasUpdate.gasoleoAplusprice" />
+                </td>
+
+                <td>
+                    <input type="text" class="form-control" placeholder=" gasnormalprice" value=" gasnormalprice" ng-model="newGasUpdate.gasnormalprice" />
+                </td>
+                <td>
+                    <button class="btn btn-primary" ng-click="updategas()">Editar recurso</button>
+                </td>
         </tbody>
     </table>
     <div class="row">

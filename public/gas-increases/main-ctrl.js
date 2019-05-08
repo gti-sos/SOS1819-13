@@ -57,6 +57,22 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
 
         });
     };
+    
+    $scope.updategas = function () {
+       var newGas = $scope.newGasUpdate;
+       console.log("editando el recurso: "+ newGas.year +" , "+newGas.province);
+       
+       $http.put($scope.url + "/" + newGas.year + "/" + newGas.province, newGas).then(function(response){
+           console.log("Editado correctamente!");
+           $scope.mensaje = "El recurso ha sido editado correctamente";
+           $scope.stateCode = response.status + ", " + response.statusText;
+            refresh();
+       }, function(error) {
+              $scope.mensaje = "Introduce correctamente el id del recurso";
+              $scope.stateCode = error.status + ", " + error.statusText;
+              refresh();
+       });
+    };
    
     $scope.deletegas = function(year, province) {
 
@@ -115,7 +131,9 @@ app.controller("MainCtrl", ["$scope", "$http", function($scope, $http) {
             $scope.mensaje = "No existen recursos con el año: "+year;
         });
         
-    }
+    };
+    
+    
 
     refresh();
 }]);
